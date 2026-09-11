@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Inventory Add</title>
+</head>
+<body style="font-size: medium; font-family: Courier New; margin right: 30px;">
+<h4><br><br> StockWise POS <br><br></h4>
+
+<div style="text align: right; font-weight: bold;"> USER
+<aside>
+    <div class="sidebar">
+        <nav>
+            <a href="Dashboard.html">Home</a><br><br>
+            <a href="Order.html">Orders</a><br><br>
+            <a href="Inventory.html">Inventory</a><br><br>
+            <a href="Reports.html">Reports</a><br><br>
+            <a href="Rewards.html">Rewards</a><br><br>
+            <br><br><br>
+            <a href="NA">Settings</a><br><br>
+            <a href="LogIn.html">Log Out</a>
+        </nav>
+    </div>
+</aside>
+
+<form>
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" required>
+    <br><br><br>
+    <label for="item-name">Item Name:</label>
+    <input type="text" id="item-name" name="item-name" required>
+    <br><br><br>
+    <label for="expiration-date">Expiration Date:</label>
+    <input type="date" id="expiration-date" name="expiration-date" required>
+    <br><br><br>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" min="0" required>
+    <br><br><br>
+    <button type="button" id="scan">Scan</button>
+    <button type="submit" id="add">Add</button>
+    <button type="reset" id="cancel">Cancel</button>
+</form>
+
+</body>
+</html>
+    
