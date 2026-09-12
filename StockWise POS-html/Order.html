@@ -2,67 +2,89 @@
 <head>
 
 <title>Order</title>
+<link rel="stylesheet" href="Order.css">
 
 </head>
 
-<body style="font-size: medium; font-family: Courier New; margin-right: 30px;">
-<h4><br> StockWise POS <br><br><br></h4>
-<div style="text-align: right; font-weight: bold;"> USER </div><br><br><br>
-<aside>
+<body>
 
-	<div class="sidebar">
+<header class="top-header">
+	<h2>StockWise POS</h2>
+	<div class="user">USER</div>
+</header>
+
+<aside class="sidebar">
+
 	<nav>
-		<a href="Dashboard.html">Home</a><br><br>
-		<a href="Order.html">Orders</a><br><br>
-		<a href="Inventory.html">Inventory</a><br><br>
-		<a href="Reports.html">Reports</a><br><br>
-		<a href="Rewards.html">Reward</a><br><br>
-		<br><br><br>
-		<a href="NA">Settings</a><br><br>
-		<a href="LogIn.html"> Log Out</a>
+		<a href="Dashboard.html">HOME</a>
+		<a href="Order.html">ORDERS</a>
+		<a href="Inventory.html">INVENTORY</a>
+		<a href="Reports.html">REPORTS</a>
+		<a href="Rewards.html">REWARD</a>
+
+		<div class="sidebar-bottom">
+			<a href="NA">SETTINGS</a>
+			<a href="LogIn.html">LOGOUT</a>
+		</div>
 	</nav>
-</div>
+
 </aside>
 
-<main>
+<main class="order-page">
 
-<section>
-<form>
-	<label for="search">Search</label>
-	<input type="search" id="search" name="search">
-	<button type="button">Scan Item/Barcode</button>
-</form>
-</section>
+	<section class="order-content">
 
-<section>
+		<div class="search-area">
+			<form>
+				<input
+					type="search"
+					id="search"
+					name="search"
+					placeholder="Search item"
+				>
 
-	<button type="button">Product 1</button>
-	<button type="button">Product 2</button>
-	<button type="button">Product 3</button>
-	<br><br>
-	<button type="button">Product 4</button>
-	<button type="button">Product 5</button>
-	<button type="button">Product 6</button>
-	<br><br>
-	<button type="button">Product 7</button>
-	<button type="button">Product 8</button>
-	<button type="button">Product 9</button>
+				<button type="button">Scan Item / Barcode</button>
+			</form>
+		</div>
 
-</section>
+		<h3 class="category-title">Category</h3>
 
-<section>
-	<h3>Order List</h3>
-	<div>
-		<p>Item 1 &nbsp;&nbsp; 0.00</p>
-		<p>Item 2 &nbsp;&nbsp; 0.00</p>
-		<p>Item 3 &nbsp;&nbsp; 0.00</p>
-		<p>Item 4 &nbsp;&nbsp; 0.00</p>
-	</div>
+		<div class="product-grid">
+			<button type="button">Product 1</button>
+			<button type="button">Product 2</button>
+			<button type="button">Product 3</button>
 
-<a href="CompleteOrder.html"><button type="button">Complete</button></a>
-<button type="button">Delete</button>
+			<button type="button">Product 4</button>
+			<button type="button">Product 5</button>
+			<button type="button">Product 6</button>
 
-</section>
+			<button type="button">Product 7</button>
+			<button type="button">Product 8</button>
+			<button type="button">Product 9</button>
+		</div>
+
+	</section>
+
+	<section class="order-list">
+
+		<h3>Customer Order List</h3>
+
+		<div class="order-items">
+			<p><span>Item 1</span><span>0.00</span></p>
+			<p><span>Item 2</span><span>0.00</span></p>
+			<p><span>Item 3</span><span>0.00</span></p>
+			<p><span>Item 4</span><span>0.00</span></p>
+		</div>
+
+		<div class="order-actions">
+			<a href="CompleteOrder.html">
+				<button type="button" class="complete-button">Complete</button>
+			</a>
+
+			<button type="button" class="remove-button">Remove</button>
+		</div>
+
+	</section>
 
 </main>
 
