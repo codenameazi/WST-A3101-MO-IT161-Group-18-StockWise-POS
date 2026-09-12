@@ -2,84 +2,129 @@
 <head>
 
 <title>Inventory</title>
+<link rel="stylesheet" href="Inventory.css">
 
 </head>
 
-<body style="font-size: medium; font-family: Courier New; margin-right: 30px;">
-<h4><br> StockWise POS <br><br><br></h4>
-<div style="text-align: right; font-weight: bold;"> USER </div><br><br><br>
-<aside>
+<body>
 
-	<div class="sidebar">
+<header class="top-header">
+	<h2>StockWise POS</h2>
+	<div class="user">USER</div>
+</header>
+
+<aside class="sidebar">
+
 	<nav>
-		<a href="Dashboard.html">Home</a><br><br>
-		<a href="Order.html">Orders</a><br><br>
-		<a href="Inventory.html">Inventory</a><br><br>
-		<a href="Reports.html">Reports</a><br><br>
-		<a href="Rewards.html">Reward</a><br><br>
-		<br><br><br>
-		<a href="NA">Settings</a><br><br>
-		<a href="LogIn.html"> Log Out</a>
+		<a href="Dashboard.html">HOME</a>
+		<a href="Order.html">ORDERS</a>
+		<a href="Inventory.html">INVENTORY</a>
+		<a href="Reports.html">REPORTS</a>
+		<a href="Rewards.html">REWARD</a>
+
+		<div class="sidebar-bottom">
+			<a href="NA">SETTINGS</a>
+			<a href="LogIn.html">LOGOUT</a>
+		</div>
 	</nav>
-</div>
+
 </aside>
 
-<main>
+<main class="inventory-page">
 
-<section>
-<form>
-<label for="search">Search</label>
-<input type="search" id="search" name="search">
-<button type="button">Category</button>
-</form>
-<br>
-<a href="InventoryAdd.html"><button type="button">Add</button></a>
-</section>
+	<section class="summary-cards">
 
-<section>
-	<h3>Result Overview</h3>
-	
-</section>
-<table>
-	<thead>
-	<tr>
-	<th>Product</th>
-	<th>Stock</th>
-	<th>Status</th>
-	<th>Expiration</th>
-	<th>Action</th>
-	</tr>
-	</thead>
+		<div class="summary-card">
+			<h4>Current Stocks</h4>
+			<p>5</p>
+		</div>
 
-	<tbody>
-		
-	<tr>
-	<td>Item 1</td>
-	<td>25</td>
-	<td>Low</td>
-	<td>09/28/2026</td>
-	<td><button type="button">Edit</button></td>
-	</tr>
+		<div class="summary-card">
+			<h4>Low Stocks</h4>
+			<p>5</p>
+		</div>
 
-	<tr>
-	<td>Item 2</td>
-	<td>35</td>
-	<td>Normal</td>
-	<td>10/28/2026</td>
-	<td><button type="button">Edit</button></td>
-	</tr>
+		<div class="summary-card">
+			<h4>Expiration Reminder</h4>
+			<p>5</p>
+		</div>
 
-	<tr>
-	<td>Item 3</td>
-	<td>45</td>
-	<td>High</td>
-	<td>11/28/2026</td>
-	<td><button type="button">Edit</button></td>
-	</tr>
+	</section>
 
-	</tbody>
-</table>
-</section>
+	<section class="inventory-controls">
+
+		<form class="search-form">
+
+			<input
+				type="search"
+				id="search"
+				name="search"
+				placeholder="Search item / product"
+			>
+
+			<button type="button">Category</button>
+
+		</form>
+
+		<a href="InventoryAdd.html">
+			<button type="button" class="add-product">
+				Add Product
+			</button>
+		</a>
+
+	</section>
+
+	<section class="inventory-list">
+
+		<table>
+
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th>Stock</th>
+					<th>Status</th>
+					<th>Expiration</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				<tr>
+					<td>Item 1</td>
+					<td>25</td>
+					<td class="status-low">Low</td>
+					<td>09/28/2026</td>
+					<td>
+						<a href="InventoryEdit.html">Edit</a>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Item 2</td>
+					<td>35</td>
+					<td class="status-normal">Normal</td>
+					<td>10/28/2026</td>
+					<td>
+						<a href="InventoryEdit.html">Edit</a>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Item 3</td>
+					<td>45</td>
+					<td class="status-high">High</td>
+					<td>11/28/2026</td>
+					<td>
+						<a href="InventoryEdit.html">Edit</a>
+					</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+	</section>
 
 </main>
 
