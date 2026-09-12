@@ -2,27 +2,36 @@
 <head>
 
 <title>Dashboard</title>
+<link rel="stylesheet" href="Dashboard.css">
 
 </head>
 
-<body style="font-size: medium; font-family: Courier New; margin-right: 30px;">
-<h4><br> StockWise POS <br><br><br></h4>
-<div style="text-align: right; font-weight: bold;"> USER </div><br><br><br>
-<aside>
+<body>
 
-	<div class="sidebar">
+<header class="top-header">
+	<h2>StockWise POS</h2>
+	<div class="user">USER</div>
+</header>
+
+<aside class="sidebar">
+
 	<nav>
-		<a href="Dashboard.html">Home</a><br><br>
-		<a href="Order.html">Orders</a><br><br>
-		<a href="Inventory.html">Inventory</a><br><br>
-		<a href="Reports.html">Reports</a><br><br>
-		<a href="Rewards.html">Reward</a><br><br>
-		<br><br><br>
-		<a href="NA">Settings</a><br><br>
-		<a href="LogIn.html"> Log Out</a>
+		<a href="Dashboard.html" class="active">HOME</a>
+		<a href="Order.html">ORDERS</a>
+		<a href="Inventory.html">INVENTORY</a>
+		<a href="Reports.html">REPORTS</a>
+		<a href="Rewards.html">REWARD</a>
+
+		<div class="sidebar-bottom">
+			<a href="Notifications.html">NOTIFICATIONS</a>
+			<a href="Settings.html">SETTINGS</a>
+			<a href="LogIn.html">LOGOUT</a>
+		</div>
 	</nav>
-</div>
+
 </aside>
+
+<main class="dashboard-page">
 
 <section class="summary">
 
@@ -41,6 +50,8 @@
 <p>ex: Php 0.00</p>
 </div>
 
+</section>
+
 <section class="alerts">
 
 <div class="card">
@@ -52,6 +63,8 @@
 <h5>Expiration Reminder</h5>
 <p>Sample Item #1  Sample Date <br>Sample Item #2  Sample Date</p>
 </div>
+
+</section>
 
 <section class="product-performance">
 
@@ -65,7 +78,9 @@
 <p>Sample Item #1 <br> Sample Item #2 </p>
 </div>
 
-<section class="sales overview">
+</section>
+
+<section class="sales-overview">
 
 <div class="card">
 <h5>Sales Overview</h5>
@@ -73,6 +88,8 @@
 </div>
 
 </section>
+
+</main>
 
 </body>
 </html>
