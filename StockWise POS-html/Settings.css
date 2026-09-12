@@ -1,0 +1,177 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #F5F7F9;
+	color: #202832;
+}
+
+.top-header {
+	height: 80px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 35px;
+	background-color: #FFFFFF;
+	border-bottom: 1px solid #D7DEE5;
+}
+
+.top-header h2 {
+	margin: 0;
+	font-size: 22px;
+	color: #172033;
+}
+
+.user {
+	font-weight: bold;
+	color: #172033;
+}
+
+.sidebar {
+	position: fixed;
+	top: 80px;
+	left: 0;
+	width: 180px;
+	height: calc(100vh - 80px);
+	background-color: #172033;
+	padding: 25px 20px;
+}
+
+.sidebar nav {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.sidebar a {
+	text-decoration: none;
+	color: #F5F7F9;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 18px;
+	padding: 8px;
+	border-radius: 5px;
+}
+
+.sidebar a:hover {
+	background-color: #496A81;
+}
+
+.sidebar a.active {
+	background-color: #496A81;
+}
+
+.sidebar-bottom {
+	margin-top: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.settings-page {
+	margin-left: 180px;
+	padding: 25px;
+	max-width: 700px;
+}
+
+.page-title {
+	color: #172033;
+	font-size: 26px;
+	margin: 0 0 20px;
+}
+
+.settings-section {
+	background-color: #FFFFFF;
+	padding: 20px 25px;
+	margin-bottom: 20px;
+	border: 1px solid #D7DEE5;
+	border-radius: 8px;
+}
+
+.settings-section h3 {
+	margin: 0 0 5px;
+	color: #172033;
+}
+
+.section-desc {
+	margin: 0 0 18px;
+	font-size: 13px;
+	color: #496A81;
+}
+
+.settings-form .form-row {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 16px;
+}
+
+.settings-form label {
+	font-size: 13px;
+	font-weight: bold;
+	color: #172033;
+	margin-bottom: 6px;
+}
+
+.settings-form input,
+.settings-form select {
+	padding: 10px;
+	border: 1px solid #B8C2CC;
+	border-radius: 5px;
+	background-color: #FFFFFF;
+	font-family: inherit;
+	font-size: 14px;
+	color: #202832;
+}
+
+.settings-form input:disabled {
+	background-color: #F5F7F9;
+	color: #496A81;
+}
+
+.save-button {
+	padding: 10px 18px;
+	border: none;
+	background-color: #496A81;
+	color: #FFFFFF;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.save-button:hover {
+	background-color: #3E5D72;
+}
+
+.toggle-list {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.toggle-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 14px;
+	color: #202832;
+}
+
+.toggle-row input[type="checkbox"] {
+	width: 18px;
+	height: 18px;
+	accent-color: #496A81;
+}
+
+@media (max-width: 800px) {
+
+	.sidebar {
+		width: 140px;
+	}
+
+	.settings-page {
+		margin-left: 140px;
+	}
+
+}
