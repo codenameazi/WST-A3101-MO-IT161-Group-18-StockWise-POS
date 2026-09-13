@@ -2,12 +2,14 @@
 <head>
 
 <title>Rewards</title>
+<link rel="stylesheet" href="Rewards.css">
 
 </head>
 
-<body style="font-size: medium; font-family: Courier New; margin-right: 30px;">
-<h4><br> StockWise POS <br><br><br></h4>
-<div style="text-align: right; font-weight: bold;"> USER </div><br><br><br>
+<body style="font-size: medium; font-family: Courier New;">
+<header><h4>StockWise POS</h4>
+<div class="user">USER</div>
+</header>
 <aside>
 
 	<div class="sidebar">
@@ -18,10 +20,12 @@
 		<a href="Reports.html">Reports</a><br><br>
 		<a href="Rewards.html">Rewards</a><br><br>
 		<br><br><br>
-		<a href="Notifications.html">Notifications</a><br><br>
-		<a href="Settings.html">Settings</a><br><br>
-		<a href="LogIn.html"> Log Out</a>
+		<a href="NA">Settings</a><br><br>
 	</nav>
+<footer>
+	<a href="LogIn.html"> Log Out</a>
+</footer>
+
 </div>
 </aside>
 
@@ -33,7 +37,7 @@
 <input type="search" id="search" name="search">
 </form>
 <br>
-<button type="button">Add</button>
+<a href="RewardAdd.html"><button type="button">Add</button></a>
 </section>
 
 <section>
@@ -43,6 +47,7 @@
 <table>
 	<thead>
 	<tr>
+	<th>Customer No.</th>
 	<th>Customer</th>
 	<th>Purchase</th>
 	<th>Points</th>
@@ -54,40 +59,47 @@
 	<tbody>
 		
 	<tr>
+	<td>CXN00001</td>
 	<td>Keon</td>
 	<td>25</td>
 	<td>250</td>
 	<td>25</td>
-	<td><button type="button">Edit</button></td>
+	<td><a href="RewardsView.html"><button type="button" id="view">View</button></a>
+	<a href="RewardEdit.html"><button type="button" id="edit">Edit</button></td></a>
 	</tr>
 
 	<tr>
+	<td>CXN00002</td>
 	<td>Azriel</td>
 	<td>35</td>
 	<td>350</td>
 	<td>35</td>
-	<td><button type="button">Edit</button></td>
+	<td><button type="button" id="view">View</button>
+	<a href="RewardEdit.html"><button type="button" id="edit">Edit</button></td></a>
 	</tr>
 
 	<tr>
+	<td>CXN00003</td>
 	<td>Haziel</td>
 	<td>45</td>
 	<td>450</td>
 	<td>45</td>
-	<td><button type="button">Edit</button></td>
+	<td><button type="button" id="view">View</button>
+	<a href="RewardEdit.html"><button type="button" id="edit">Edit</button></td></a>
 	</tr>
 
 	<tr>
+	<td>CXN00004</td>
 	<td>Hannah</td>
 	<td>55</td>
 	<td>550</td>
 	<td>55</td>
-	<td><button type="button">Edit</button></td>
+	<td><button type="button" id="view">View</button>
+	<a href="RewardEdit.html"><button type="button" id="edit">Edit</button></td></a>
 	</tr>
 
 	</tbody>
 </table>
-</section>
 
 </main>
 
