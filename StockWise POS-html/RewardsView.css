@@ -1,0 +1,202 @@
+* 
+{
+    box-sizing: border-box;
+}
+
+body 
+{
+    margin: 0;
+    font-family: "Courier New", monospace;
+    font-size: medium;
+    background-color: #F5F7F9;
+    color: #172033;
+}
+
+header
+{
+    height: 78px;
+    background-color: #172033;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+header h4 
+{
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.user 
+{
+    font-weight: bold;
+}
+
+aside 
+{
+    position: fixed;
+    top: 78px;
+    left: 0;
+    width: 176px;
+    height: calc(100vh - 78px);
+    background-color: #496A81;
+}
+
+.sidebar 
+{
+    width: 100%;
+}
+
+nav 
+{
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
+}
+
+nav a 
+{
+    padding: 15px 23px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover 
+{
+    background-color: #172033;
+}
+
+footer
+{
+    background-color: #172033;
+    padding: 15px 23px;
+}
+
+footer a
+{
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover
+{
+    color: #B8C2CC;
+}
+
+h2
+{
+    margin-left: 220px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    color: #172033;
+}
+
+main
+{
+    margin-left: 220px;
+    margin-top: 40px;
+    margin-right: 30px;
+}
+
+main section
+{
+    background-color: #FFFFFF;
+    border: 1px solid #B8C2CC;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+main section h3
+{
+    margin-top: 0;
+    color: #172033;
+}
+
+main section:first-child
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+main section:first-child h3
+{
+    width: 100%;
+}
+
+main section:first-child div
+{
+    width: 180px;
+    padding: 10px;
+    border: 1px solid #B8C2CC;
+}
+
+main section:first-child div:nth-of-type(1)
+{
+    background-color: #201677;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+main section:first-child div:nth-of-type(2)
+{
+    background-color: #8d1d1d;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+main section:first-child div:nth-of-type(3)
+{
+    background-color: #afb12f;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+main section:first-child p
+{
+    margin: 5px 0;
+}
+
+main section:nth-child(2) p
+{
+    margin: 10px 0;
+}
+
+button
+{
+    padding: 8px 18px;
+    border: none;
+    font-family: "Courier New", monospace;
+    cursor: pointer;
+}
+
+main section:first-child button
+{
+    padding: 5px 12px;
+    background-color: #2c5369;
+    color: #FFFFFF;
+    float: right;
+}
+
+main a:first-of-type button
+{
+    background-color: #496A81;
+    color: #FFFFFF;
+}
+
+main a:last-of-type button
+{
+    background-color: #9B4D55;
+    color: #FFFFFF;
+    margin-left: 5px;
+}
+
+button:hover
+{
+    opacity: 0.85;
+}
