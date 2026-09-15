@@ -1,46 +1,95 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-    <title>Rewards Edit Cx</title>
-    <link rel="stylesheet" href="RewardEdit.css">
+    <title>Rewards Edit Customer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="font-size: medium; font-family: Courier New;">
-<header><h4>StockWise POS</h4>
-<div class="user">USER</div>
-</header>
 
-<aside>
-    <div class="sidebar">
+<body>
+
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
+
+    <aside class="sidebar">
+
         <nav>
-            <a href="Dashboard.html">Home</a><br><br>
-            <a href="Order.html">Orders</a><br><br>
-            <a href="Inventory.html">Inventory</a><br><br>
-            <a href="Reports.html">Reports</a><br><br>
-            <a href="Rewards.html">Rewards</a><br><br>
-            <br><br><br>
-            <a href="Settings.html">Settings</a><br><br>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html">INVENTORY</a>
+            <a href="Reports.html">REPORTS</a>
+            <a href="Rewards.html" class="active">REWARD</a>
+
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
+
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
         </nav>
-<footer>
-	<a href="LogIn.html"> Log Out</a>
-</footer>
 
-    </div>
-</aside>
-<h2>Customer Details</h2>
-<form>
-    <label for="name">Customer Name</label>
-    <input type="text" id="name" name="name" required>
-    <br><br><br>
-    <label for="number">Phone Number</label>
-    <input type="number" id="phonenumber" name="phonenumber" required>
-    <br><br><br>
-    <label for="email">Email Address</label>
-    <input type="date" id="email" name="email" required>
-    <br><br><br>
-    <button type="submit" id="save">save</button>
-    <button type="remove" id="remove">Remove</button>
-    <a href="Rewards.html"><button type="button" id="cancel">Cancel</button></a>
+    </aside>
 
-</form>
+    <main class="form-page">
+
+        <h2>Customer Details</h2>
+
+        <form>
+
+            <div class="form-row">
+                <label for="name">Customer Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                >
+            </div>
+
+            <div class="form-row">
+                <label for="phonenumber">Phone Number</label>
+                <input
+                    type="tel"
+                    id="phonenumber"
+                    name="phonenumber"
+                    required
+                >
+            </div>
+
+            <div class="form-row">
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                >
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit" id="save">
+                    Save
+                </button>
+
+                <button type="button" id="remove">
+                    Remove
+                </button>
+
+                <a href="Rewards.html" class="cancel-button">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </main>
 
 </body>
+
 </html>

@@ -1,93 +1,124 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-
-<title>Order</title>
-<link rel="stylesheet" href="Order.css">
-
+    <title>Order</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="top-header">
-	<h2>StockWise POS</h2>
-	<div class="user">USER</div>
-</header>
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
 
-<aside class="sidebar">
+    <aside class="sidebar">
 
-	<nav>
-		<a href="Dashboard.html">HOME</a>
-		<a href="Order.html">ORDERS</a>
-		<a href="Inventory.html">INVENTORY</a>
-		<a href="Reports.html">REPORTS</a>
-		<a href="Rewards.html">REWARD</a>
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html" class="active">ORDERS</a>
+            <a href="Inventory.html">INVENTORY</a>
+            <a href="Reports.html">REPORTS</a>
+            <a href="Rewards.html">REWARD</a>
 
-		<div class="sidebar-bottom">
-			<a href="Notifications.html">NOTIFICATIONS</a>
-			<a href="Settings.html">SETTINGS</a>
-			<a href="LogIn.html">LOGOUT</a>
-		</div>
-	</nav>
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
 
-</aside>
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
 
-<main class="order-page">
+    </aside>
 
-	<section class="order-content">
+    <main class="order-page">
 
-		<div class="search-area">
-			<form>
-				<input
-					type="search"
-					id="search"
-					name="search"
-					placeholder="Search item"
-				>
+        <section class="order-content">
 
-				<button type="button">Scan Item / Barcode</button>
-			</form>
-		</div>
+            <div class="search-area">
 
-		<h3 class="category-title">Category</h3>
+                <form>
+                    <input
+                        type="search"
+                        id="search"
+                        name="search"
+                        placeholder="Search item"
+                    >
 
-		<div class="product-grid">
-			<button type="button">Product 1</button>
-			<button type="button">Product 2</button>
-			<button type="button">Product 3</button>
+                    <button type="button">
+                        Scan Item / Barcode
+                    </button>
+                </form>
 
-			<button type="button">Product 4</button>
-			<button type="button">Product 5</button>
-			<button type="button">Product 6</button>
+            </div>
 
-			<button type="button">Product 7</button>
-			<button type="button">Product 8</button>
-			<button type="button">Product 9</button>
-		</div>
+            <h3 class="category-title">Category</h3>
 
-	</section>
+            <div class="product-grid">
 
-	<section class="order-list">
+                <button type="button">Product 1</button>
+                <button type="button">Product 2</button>
+                <button type="button">Product 3</button>
 
-		<h3>Customer Order List</h3>
+                <button type="button">Product 4</button>
+                <button type="button">Product 5</button>
+                <button type="button">Product 6</button>
 
-		<div class="order-items">
-			<p><span>Item 1</span><span>0.00</span></p>
-			<p><span>Item 2</span><span>0.00</span></p>
-			<p><span>Item 3</span><span>0.00</span></p>
-			<p><span>Item 4</span><span>0.00</span></p>
-		</div>
+                <button type="button">Product 7</button>
+                <button type="button">Product 8</button>
+                <button type="button">Product 9</button>
 
-		<div class="order-actions">
-			<a href="CompleteOrder.html">
-				<button type="button" class="complete-button">Complete</button>
-			</a>
+            </div>
 
-			<button type="button" class="remove-button">Remove</button>
-		</div>
+        </section>
 
-	</section>
+        <section class="order-list">
 
-</main>
+            <h3>Customer Order List</h3>
+
+            <div class="order-items">
+
+                <p>
+                    <span>Item 1</span>
+                    <span>0.00</span>
+                </p>
+
+                <p>
+                    <span>Item 2</span>
+                    <span>0.00</span>
+                </p>
+
+                <p>
+                    <span>Item 3</span>
+                    <span>0.00</span>
+                </p>
+
+                <p>
+                    <span>Item 4</span>
+                    <span>0.00</span>
+                </p>
+
+            </div>
+
+            <div class="order-actions">
+
+                <a href="CompleteOrder.html" class="complete-button">
+                    Complete
+                </a>
+
+                <button type="button" class="remove-button">
+                    Remove
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

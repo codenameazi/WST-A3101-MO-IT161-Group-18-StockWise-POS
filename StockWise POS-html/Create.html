@@ -1,30 +1,56 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Create</title>
-</head>
-<body style="font-size: medium; font-family: Courier New;">
-<h1><br><br> StockWise POS <br><br></h1>
 
-<form>
-    <h3> Create Account</h3>
-    <label for="first name">First Name</label>
-    <input type="text" id="first name" name="first name" required>
-    <br><br><br>
-    <label for="last name">Last Name</label>
-    <input type="text" id="last name" name="last name" required>
-    <br><br><br>
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
-    <br><br><br>
-    <br><br><br>
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" required>
-    <br><br><br>
-    <label for="password">Password</label>
-    <input type="text" id="password" name="password" required>
-    <br><br><br>
-    <button type="submit">Create Account</button>
-</form>
+<head>
+    <title>Create Account</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="create-page">
+
+        <section class="card">
+
+            <h1>StockWise POS</h1>
+
+            <form class="create-form">
+
+                <h3>Create Account</h3>
+
+                <div class="form-row">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last-name" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit">Create Account</button>
+
+            </form>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

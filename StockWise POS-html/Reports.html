@@ -1,87 +1,105 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-
-<title>Reports</title>
-
+    <title>Reports</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="font-size: medium; font-family: Courier New; margin-right: 30px;">
-<h4><br> StockWise POS <br><br><br></h4>
-<div style="text-align: right; font-weight: bold;"> USER </div><br><br><br>
+<body>
 
-<aside>
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
 
-	<div class="sidebar">
-	<nav>
-		<a href="Dashboard.html">Home</a><br><br>
-		<a href="Order.html">Orders</a><br><br>
-		<a href="Inventory.html">Inventory</a><br><br>
-		<a href="Reports.html">Reports</a><br><br>
-		<a href="Rewards.html">Reward</a><br><br>
-		<br><br><br>
-		<a href="Notifications.html">Notifications</a><br><br>
-		<a href="Settings.html">Settings</a><br><br>
-		<a href="LogIn.html">Log Out</a>
-	</nav>
-	</div>
+    <aside class="sidebar">
 
-</aside>
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html">INVENTORY</a>
+            <a href="Reports.html" class="active">REPORTS</a>
+            <a href="Rewards.html">REWARD</a>
 
-<main>
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
 
-<section>
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
 
-	<div>
-		<h5>Total Sales</h5>
-		<p>25,000</p>
-	</div>
+    </aside>
 
-	<div>
-		<h5>Estimated Profit</h5>
-		<p>5,000</p>
-	</div>
+    <main class="reports-page">
 
-	<div>
-		<h5>Total Orders</h5>
-		<p>200</p>
-	</div>
+        <section class="report-summary">
 
-</section>
+            <div>
+                <h5>Total Sales</h5>
+                <p>25,000</p>
+            </div>
 
-<section>
+            <div>
+                <h5>Estimated Profit</h5>
+                <p>5,000</p>
+            </div>
 
-	<h5>Sales Overview</h5>
-	<div>Graph</div>
+            <div>
+                <h5>Total Orders</h5>
+                <p>200</p>
+            </div>
 
-</section>
+        </section>
 
-<section>
 
-	<h5>Fast Products</h5>
+        <section class="sales-overview">
 
-	<a href="ReportsBreakdown.html">View</a>
+            <h5>Sales Overview</h5>
 
-	<br><br>
+            <div class="graph">
+                Graph
+            </div>
 
-	<p>Item 1</p>
-	<p>Item 2</p>
+        </section>
 
-</section>
 
-<section>
+        <section class="product-report">
 
-	<h5>Slow Products</h5>
+            <div class="report-heading">
+                <h5>Fast Products</h5>
 
-	<a href="ReportsBreakdown.html">View</a>
+                <a href="ReportsBreakdown.html" class="view-link">
+                    View
+                </a>
+            </div>
 
-	<br><br>
+            <p>Item 1</p>
+            <p>Item 2</p>
 
-	<p>Item 3</p>
-	<p>Item 4</p>
+        </section>
 
-</section>
 
-</main>
+        <section class="product-report">
+
+            <div class="report-heading">
+                <h5>Slow Products</h5>
+
+                <a href="ReportsBreakdown.html" class="view-link">
+                    View
+                </a>
+            </div>
+
+            <p>Item 3</p>
+            <p>Item 4</p>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

@@ -1,107 +1,159 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-
-<title>Rewards</title>
-<link rel="stylesheet" href="Rewards.css">
-
+    <title>Rewards</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="font-size: medium; font-family: Courier New;">
-<header><h4>StockWise POS</h4>
-<div class="user">USER</div>
-</header>
-<aside>
+<body>
 
-	<div class="sidebar">
-	<nav>
-		<a href="Dashboard.html">Home</a><br><br>
-		<a href="Order.html">Orders</a><br><br>
-		<a href="Inventory.html">Inventory</a><br><br>
-		<a href="Reports.html">Reports</a><br><br>
-		<a href="Rewards.html">Rewards</a><br><br>
-		<br><br><br>
-		<a href="Settings.html">Settings</a><br><br>
-	</nav>
-<footer>
-	<a href="LogIn.html"> Log Out</a>
-</footer>
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
 
-</div>
-</aside>
+    <aside class="sidebar">
 
-<main>
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html">INVENTORY</a>
+            <a href="Reports.html">REPORTS</a>
+            <a href="Rewards.html" class="active">REWARD</a>
 
-<section>
-<form>
-<label for="search">Search</label>
-<input type="search" id="search" name="search">
-</form>
-<br>
-<a href="RewardAdd.html"><button type="button">Add</button></a>
-</section>
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
 
-<section>
-	<h3>Result Overview</h3>
-	
-</section>
-<table>
-	<thead>
-	<tr>
-	<th>Customer No.</th>
-	<th>Customer</th>
-	<th>Purchase</th>
-	<th>Points</th>
-	<th>Credit</th>
-	<th>Action</th>
-	</tr>
-	</thead>
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
 
-	<tbody>
-		
-	<tr>
-	<td>CXN00001</td>
-	<td>Keon</td>
-	<td>25</td>
-	<td>250</td>
-	<td>25</td>
-	<td><a href="RewardsView.html"><button type="button" id="view">View</button></a>
-	<a href="RewardEdit.html"><button type="button" id="edit">Edit</button></td></a>
-	</tr>
+    </aside>
 
-	<tr>
-	<td>CXN00002</td>
-	<td>Azriel</td>
-	<td>35</td>
-	<td>350</td>
-	<td>35</td>
-	<td><button type="button" id="view">View</button>
-	<a href="RewardEdit.html"><button type="button" id="edit">Edit</button></td></a>
-	</tr>
+    <main class="rewards-page">
 
-	<tr>
-	<td>CXN00003</td>
-	<td>Haziel</td>
-	<td>45</td>
-	<td>450</td>
-	<td>45</td>
-	<td><button type="button" id="view">View</button>
-	<a href="RewardEdit.html"><button type="button" id="edit">Edit</button></td></a>
-	</tr>
+        <section class="rewards-controls">
 
-	<tr>
-	<td>CXN00004</td>
-	<td>Hannah</td>
-	<td>55</td>
-	<td>550</td>
-	<td>55</td>
-	<td><button type="button" id="view">View</button>
-	<a href="RewardEdit.html"><button type="button" id="edit">Edit</button></td></a>
-	</tr>
+            <form class="search-form">
+                <label for="search">Search</label>
 
-	</tbody>
-</table>
+                <input
+                    type="search"
+                    id="search"
+                    name="search"
+                    placeholder="Search customer"
+                >
+            </form>
 
-</main>
+            <a href="RewardAdd.html" class="add-button">
+                Add
+            </a>
+
+        </section>
+
+        <section class="rewards-overview">
+
+            <h3>Result Overview</h3>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Customer No.</th>
+                        <th>Customer</th>
+                        <th>Purchase</th>
+                        <th>Points</th>
+                        <th>Credit</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>CXN00001</td>
+                        <td>Keon</td>
+                        <td>25</td>
+                        <td>250</td>
+                        <td>25</td>
+
+                        <td class="table-actions">
+                            <a href="RewardsView.html" class="view-button">
+                                View
+                            </a>
+
+                            <a href="RewardEdit.html" class="edit-button">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CXN00002</td>
+                        <td>Azriel</td>
+                        <td>35</td>
+                        <td>350</td>
+                        <td>35</td>
+
+                        <td class="table-actions">
+                            <a href="RewardsView.html" class="view-button">
+                                View
+                            </a>
+
+                            <a href="RewardEdit.html" class="edit-button">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CXN00003</td>
+                        <td>Haziel</td>
+                        <td>45</td>
+                        <td>450</td>
+                        <td>45</td>
+
+                        <td class="table-actions">
+                            <a href="RewardsView.html" class="view-button">
+                                View
+                            </a>
+
+                            <a href="RewardEdit.html" class="edit-button">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CXN00004</td>
+                        <td>Hannah</td>
+                        <td>55</td>
+                        <td>550</td>
+                        <td>55</td>
+
+                        <td class="table-actions">
+                            <a href="RewardsView.html" class="view-button">
+                                View
+                            </a>
+
+                            <a href="RewardEdit.html" class="edit-button">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

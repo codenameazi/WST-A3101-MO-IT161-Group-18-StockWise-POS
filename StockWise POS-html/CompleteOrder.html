@@ -1,67 +1,116 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-
-<title>CompleteOrder</title>
-
+    <title>Complete Order</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="font-size: medium; font-family: Courier New; margin-right: 30px;">
-<h4><br> StockWise POS <br><br><br></h4>
-<div style="text-align: right; font-weight: bold;"> USER </div><br><br><br>
-<aside>
+<body>
 
-	<div class="sidebar">
-	<nav>
-		<a href="Dashboard.html">Home</a><br><br>
-		<a href="Order.html">Orders</a><br><br>
-		<a href="Inventory.html">Inventory</a><br><br>
-		<a href="Reports.html">Reports</a><br><br>
-		<a href="Rewards.html">Reward</a><br><br>
-		<br><br><br>
-		<a href="Notifications.html">Notifications</a><br><br>
-		<a href="Settings.html">Settings</a><br><br>
-		<a href="LogIn.html"> Log Out</a>
-	</nav>
-</div>
-</aside>
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
 
-<main>
+    <aside class="sidebar">
 
-<section>
-	<h3>Order List</h3>
-	<div>
-		<p>Item 1 &nbsp;&nbsp;&nbsp; 0.00</p>
-		<p>Item 2 &nbsp;&nbsp;&nbsp; 0.00</p>
-		<p>Item 3 &nbsp;&nbsp;&nbsp; 0.00</p>
-		<p>Item 4 &nbsp;&nbsp;&nbsp; 0.00</p>
-	</div>
-	<br><br><br><br><br>
-	<p>Total &nbsp;&nbsp;&nbsp; 0.00</p>
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html" class="active">ORDERS</a>
+            <a href="Inventory.html">INVENTORY</a>
+            <a href="Reports.html">REPORTS</a>
+            <a href="Rewards.html">REWARD</a>
 
-</section>
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
 
-<section>
-	<h3>Payment Method</h3>
-	<button type="button">Cash</button>
-	<button type="button">Split Payment</button>
-	<button type="button">E-Wallet</button>
-</section>
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
 
-<br><br><br><br><br>
-<section>
-	<button type="print receipt">Print</button>
-</section>
+    </aside>
 
-<br><br><br><br><br>
-<section>
-<a href="Order.html">
-	<button type="button">Back</button>
-	<button type="button">Cancel</button>
-	<button type="button">New Order</button>
-</a>
-</section>
+    <main class="complete-order-page">
 
-</main>
+        <section class="card">
+
+            <h3>Order List</h3>
+
+            <div class="order-items">
+
+                <p>
+                    <span>Item 1</span>
+                    <span>0.00</span>
+                </p>
+
+                <p>
+                    <span>Item 2</span>
+                    <span>0.00</span>
+                </p>
+
+                <p>
+                    <span>Item 3</span>
+                    <span>0.00</span>
+                </p>
+
+                <p>
+                    <span>Item 4</span>
+                    <span>0.00</span>
+                </p>
+
+            </div>
+
+            <p>
+                <strong>Total</strong>
+                <span>0.00</span>
+            </p>
+
+        </section>
+
+        <section class="card">
+
+            <h3>Payment Method</h3>
+
+            <button type="button">Cash</button>
+            <button type="button">Split Payment</button>
+            <button type="button">E-Wallet</button>
+
+        </section>
+
+        <section class="card">
+
+            <button type="button">
+                Print
+            </button>
+
+        </section>
+
+        <section class="card">
+
+            <div class="page-actions">
+
+                <a href="Order.html" class="back-button">
+                    Back
+                </a>
+
+                <button type="button" class="remove-button">
+                    Cancel
+                </button>
+
+                <a href="Order.html" class="new-order-button">
+                    New Order
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

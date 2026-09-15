@@ -1,69 +1,104 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-
-<title>Rewards View</title>
-<link rel="stylesheet" href="RewardsView.css">
-
+    <title>Rewards View</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="font-size: medium; font-family: Courier New;">
-<header><h4>StockWise POS</h4>
-<div class="user">USER</div>
-</header>
-<aside>
+<body>
 
-	<div class="sidebar">
-	<nav>
-		<a href="Dashboard.html">Home</a><br><br>
-		<a href="Order.html">Orders</a><br><br>
-		<a href="Inventory.html">Inventory</a><br><br>
-		<a href="Reports.html">Reports</a><br><br>
-		<a href="Rewards.html">Rewards</a><br><br>
-		<br><br><br>
-		<a href="Settings.html">Settings</a><br><br></a>
-	</nav>
-<footer>
-	<a href="LogIn.html"> Log Out</a>
-</footer>
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
 
-</div>
-</aside>
+    <aside class="sidebar">
 
-<h2>Customer Details</h2>
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html">INVENTORY</a>
+            <a href="Reports.html">REPORTS</a>
+            <a href="Rewards.html" class="active">REWARD</a>
 
-<main>
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
 
-<section>
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
 
-<div>
-	<p>Total Orders</p><br>
-	<p>25</p>
-</div> 
+    </aside>
 
-<div> 
-	<p>Credit</p><br>
-	<p>25.00</p>
-	<button type="button">Pay</button>
-</div> 
+    <main class="rewards-view-page">
 
-<div> 
-	<p>Reward Points</p><br>
-	<p>250</p>
-	<button type="button">Redeem</button>
-</div>
+        <h2>Customer Details</h2>
 
-</section>
+        <section class="customer-summary">
 
-<section>
-	<p>Customer Name: Keon</p> 
-	<p>Phone Number: 0000-0000-0000</p> 
-	<p>Email: keon@sample.com</p><br><br> 
-	<p>Customer Since: 01/01/01</p> 
-</section>
-<a href="RewardEdit.html"><button type="button">Edit</button></a>
-<a href="Rewards.html"><button type="button">Back</button></a>
-	
-</main>
+            <div class="card">
+                <h4>Total Orders</h4>
+                <p>25</p>
+            </div>
+
+            <div class="card">
+                <h4>Credit</h4>
+                <p>25.00</p>
+                <button type="button">Pay</button>
+            </div>
+
+            <div class="card">
+                <h4>Reward Points</h4>
+                <p>250</p>
+                <button type="button">Redeem</button>
+            </div>
+
+        </section>
+
+        <section class="customer-information card">
+
+            <h3>Customer Information</h3>
+
+            <p>
+                <strong>Customer Name:</strong>
+                Keon
+            </p>
+
+            <p>
+                <strong>Phone Number:</strong>
+                0000-0000-0000
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                keon@sample.com
+            </p>
+
+            <p>
+                <strong>Customer Since:</strong>
+                01/01/01
+            </p>
+
+        </section>
+
+        <div class="page-actions">
+
+            <a href="RewardEdit.html" class="edit-button">
+                Edit
+            </a>
+
+            <a href="Rewards.html" class="back-button">
+                Back
+            </a>
+
+        </div>
+
+    </main>
 
 </body>
+
 </html>

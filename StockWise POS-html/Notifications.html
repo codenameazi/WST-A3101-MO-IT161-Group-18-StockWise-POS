@@ -1,99 +1,169 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-
-<title>Notifications</title>
-<link rel="stylesheet" href="Notifications.css">
-
+    <title>Notifications</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="top-header">
-	<h2>StockWise POS</h2>
-	<div class="user">USER</div>
-</header>
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
 
-<aside class="sidebar">
+    <aside class="sidebar">
 
-	<nav>
-		<a href="Dashboard.html">HOME</a>
-		<a href="Order.html">ORDERS</a>
-		<a href="Inventory.html">INVENTORY</a>
-		<a href="Reports.html">REPORTS</a>
-		<a href="Rewards.html">REWARD</a>
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html">INVENTORY</a>
+            <a href="Reports.html">REPORTS</a>
+            <a href="Rewards.html">REWARD</a>
 
-		<div class="sidebar-bottom">
-			<a href="Notifications.html" class="active">NOTIFICATIONS</a>
-			<a href="Settings.html">SETTINGS</a>
-			<a href="LogIn.html">LOGOUT</a>
-		</div>
-	</nav>
+            <div class="sidebar-bottom">
+                <a href="Notifications.html" class="active">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
 
-</aside>
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
 
-<main class="notifications-page">
+    </aside>
 
-	<div class="notifications-header">
-		<h1 class="page-title">Notifications</h1>
-		<button type="button" class="mark-read-button">Mark all as read</button>
-	</div>
+    <main class="notifications-page">
 
-	<section class="notification-list">
+        <div class="notifications-header">
 
-		<div class="notification-card unread">
-			<div class="notification-dot"></div>
-			<div class="notification-body">
-				<h4>Low Stock Alert</h4>
-				<p>Item 1 has dropped below the low stock threshold (5 units remaining).</p>
-				<span class="notification-time">10 minutes ago</span>
-			</div>
-		</div>
+            <h1 class="page-title">Notifications</h1>
 
-		<div class="notification-card unread">
-			<div class="notification-dot"></div>
-			<div class="notification-body">
-				<h4>Order Completed</h4>
-				<p>Order #1024 was completed successfully. Total: Php 350.00</p>
-				<span class="notification-time">45 minutes ago</span>
-			</div>
-		</div>
+            <button type="button" class="mark-read-button">
+                Mark all as read
+            </button>
 
-		<div class="notification-card unread">
-			<div class="notification-dot"></div>
-			<div class="notification-body">
-				<h4>Restock Recommendation</h4>
-				<p>Sales activity suggests restocking Item 2 by an estimated 20 units.</p>
-				<span class="notification-time">2 hours ago</span>
-			</div>
-		</div>
+        </div>
 
-		<div class="notification-card">
-			<div class="notification-body">
-				<h4>Inventory Updated</h4>
-				<p>Item 3 stock was manually adjusted from 30 to 45 units.</p>
-				<span class="notification-time">Yesterday</span>
-			</div>
-		</div>
+        <section class="notification-list">
 
-		<div class="notification-card">
-			<div class="notification-body">
-				<h4>Expiration Reminder</h4>
-				<p>Item 4 is nearing its expiration date (09/28/2026).</p>
-				<span class="notification-time">Yesterday</span>
-			</div>
-		</div>
+            <div class="notification-card unread">
 
-		<div class="notification-card">
-			<div class="notification-body">
-				<h4>System Notification</h4>
-				<p>StockWise settings were updated by USER.</p>
-				<span class="notification-time">2 days ago</span>
-			</div>
-		</div>
+                <div class="notification-dot"></div>
 
-	</section>
+                <div class="notification-body">
+                    <h4>Low Stock Alert</h4>
 
-</main>
+                    <p>
+                        Item 1 has dropped below the low stock threshold
+                        (5 units remaining).
+                    </p>
+
+                    <span class="notification-time">
+                        10 minutes ago
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="notification-card unread">
+
+                <div class="notification-dot"></div>
+
+                <div class="notification-body">
+                    <h4>Order Completed</h4>
+
+                    <p>
+                        Order #1024 was completed successfully.
+                        Total: Php 350.00
+                    </p>
+
+                    <span class="notification-time">
+                        45 minutes ago
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="notification-card unread">
+
+                <div class="notification-dot"></div>
+
+                <div class="notification-body">
+                    <h4>Restock Recommendation</h4>
+
+                    <p>
+                        Sales activity suggests restocking Item 2
+                        by an estimated 20 units.
+                    </p>
+
+                    <span class="notification-time">
+                        2 hours ago
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="notification-card">
+
+                <div class="notification-body">
+                    <h4>Inventory Updated</h4>
+
+                    <p>
+                        Item 3 stock was manually adjusted
+                        from 30 to 45 units.
+                    </p>
+
+                    <span class="notification-time">
+                        Yesterday
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="notification-card">
+
+                <div class="notification-body">
+                    <h4>Expiration Reminder</h4>
+
+                    <p>
+                        Item 4 is nearing its expiration date
+                        (09/28/2026).
+                    </p>
+
+                    <span class="notification-time">
+                        Yesterday
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="notification-card">
+
+                <div class="notification-body">
+                    <h4>System Notification</h4>
+
+                    <p>
+                        StockWise settings were updated by USER.
+                    </p>
+
+                    <span class="notification-time">
+                        2 days ago
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

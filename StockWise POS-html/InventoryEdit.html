@@ -1,44 +1,106 @@
+<!DOCTYPE html>
 <html>
+
 <head>
     <title>Inventory Edit</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="font-size: medium; font-family: Courier New; margin-right: 30px;">
-<h4><br><br> StockWise POS <br><br></h4>
 
-<div style="text-align: right; font-weight: bold;"> USER</div>
-<aside>
-    <div class="sidebar">
+<body>
+
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
+
+    <aside class="sidebar">
+
         <nav>
-            <a href="Dashboard.html">Home</a><br><br>
-            <a href="Order.html">Orders</a><br><br>
-            <a href="Inventory.html">Inventory</a><br><br>
-            <a href="Reports.html">Reports</a><br><br>
-            <a href="Rewards.html">Rewards</a><br><br>
-            <br><br><br>
-            <a href="Notifications.html">Notifications</a><br><br>
-            <a href="Settings.html">Settings</a><br><br>
-            <a href="LogIn.html">Log Out</a>
-        </nav>
-    </div>
-</aside>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html" class="active">INVENTORY</a>
+            <a href="Reports.html">REPORTS</a>
+            <a href="Rewards.html">REWARD</a>
 
-<form>
-    <label for="category">Category:</label>
-    <input type="text" id="category" name="category" required>
-    <br><br><br>
-    <label for="item-name">Item Name:</label>
-    <input type="text" id="item-name" name="item-name" required>
-    <br><br><br>
-    <label for="expiration-date">Expiration Date:</label>
-    <input type="date" id="expiration-date" name="expiration-date" required>
-    <br><br><br>
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" name="quantity" min="0" required>
-    <br><br><br>
-    <button type="button" id="remove item">Remove Item</button>
-    <button type="submit" id="Save">Save</button>
-    <a href="Inventory.html"><button type="button" id="cancel">Cancel</button></a>
-</form>
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
+
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
+
+    </aside>
+
+    <main class="form-page">
+
+        <h2>Edit Product</h2>
+
+        <form>
+
+            <div class="form-row">
+                <label for="category">Category:</label>
+                <input
+                    type="text"
+                    id="category"
+                    name="category"
+                    required
+                >
+            </div>
+
+            <div class="form-row">
+                <label for="item-name">Item Name:</label>
+                <input
+                    type="text"
+                    id="item-name"
+                    name="item-name"
+                    required
+                >
+            </div>
+
+            <div class="form-row">
+                <label for="expiration-date">Expiration Date:</label>
+                <input
+                    type="date"
+                    id="expiration-date"
+                    name="expiration-date"
+                    required
+                >
+            </div>
+
+            <div class="form-row">
+                <label for="quantity">Quantity:</label>
+                <input
+                    type="number"
+                    id="quantity"
+                    name="quantity"
+                    min="0"
+                    required
+                >
+            </div>
+
+            <div class="form-actions">
+
+                <button type="button" id="remove">
+                    Remove Item
+                </button>
+
+                <button type="submit" id="save">
+                    Save
+                </button>
+
+                <a href="Inventory.html" class="cancel-button">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </main>
 
 </body>
+
 </html>

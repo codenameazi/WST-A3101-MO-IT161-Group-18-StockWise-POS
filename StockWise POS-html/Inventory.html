@@ -1,133 +1,139 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-
-<title>Inventory</title>
-<link rel="stylesheet" href="Inventory.css">
-
+    <title>Inventory</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="top-header">
-	<h2>StockWise POS</h2>
-	<div class="user">USER</div>
-</header>
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
 
-<aside class="sidebar">
+    <aside class="sidebar">
 
-	<nav>
-		<a href="Dashboard.html">HOME</a>
-		<a href="Order.html">ORDERS</a>
-		<a href="Inventory.html">INVENTORY</a>
-		<a href="Reports.html">REPORTS</a>
-		<a href="Rewards.html">REWARD</a>
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html" class="active">INVENTORY</a>
+            <a href="Reports.html">REPORTS</a>
+            <a href="Rewards.html">REWARD</a>
 
-		<div class="sidebar-bottom">
-			<a href="Notifications.html">NOTIFICATIONS</a>
-			<a href="Settings.html">SETTINGS</a>
-			<a href="LogIn.html">LOGOUT</a>
-		</div>
-	</nav>
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
 
-</aside>
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
 
-<main class="inventory-page">
+    </aside>
 
-	<section class="summary-cards">
+    <main class="inventory-page">
 
-		<div class="summary-card">
-			<h4>Current Stocks</h4>
-			<p>5</p>
-		</div>
+        <section class="summary-cards">
 
-		<div class="summary-card">
-			<h4>Low Stocks</h4>
-			<p>5</p>
-		</div>
+            <div class="summary-card">
+                <h4>Current Stocks</h4>
+                <p>5</p>
+            </div>
 
-		<div class="summary-card">
-			<h4>Expiration Reminder</h4>
-			<p>5</p>
-		</div>
+            <div class="summary-card">
+                <h4>Low Stocks</h4>
+                <p>5</p>
+            </div>
 
-	</section>
+            <div class="summary-card">
+                <h4>Expiration Reminder</h4>
+                <p>5</p>
+            </div>
 
-	<section class="inventory-controls">
+        </section>
 
-		<form class="search-form">
 
-			<input
-				type="search"
-				id="search"
-				name="search"
-				placeholder="Search item / product"
-			>
+        <section class="inventory-controls">
 
-			<button type="button">Category</button>
+            <form class="search-form">
 
-		</form>
+                <input
+                    type="search"
+                    id="search"
+                    name="search"
+                    placeholder="Search item / product"
+                >
 
-		<a href="InventoryAdd.html">
-			<button type="button" class="add-product">
-				Add Product
-			</button>
-		</a>
+                <button type="button">Category</button>
 
-	</section>
+            </form>
 
-	<section class="inventory-list">
+            <a href="InventoryAdd.html">
+                <button type="button" class="add-product">
+                    Add Product
+                </button>
+            </a>
 
-		<table>
+        </section>
 
-			<thead>
-				<tr>
-					<th>Product</th>
-					<th>Stock</th>
-					<th>Status</th>
-					<th>Expiration</th>
-					<th>Action</th>
-				</tr>
-			</thead>
 
-			<tbody>
+        <section class="inventory-list">
 
-				<tr>
-					<td>Item 1</td>
-					<td>25</td>
-					<td class="status-low">Low</td>
-					<td>09/28/2026</td>
-					<td>
-						<a href="InventoryEdit.html">Edit</a>
-					</td>
-				</tr>
+            <table>
 
-				<tr>
-					<td>Item 2</td>
-					<td>35</td>
-					<td class="status-normal">Normal</td>
-					<td>10/28/2026</td>
-					<td>
-						<a href="InventoryEdit.html">Edit</a>
-					</td>
-				</tr>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Stock</th>
+                        <th>Status</th>
+                        <th>Expiration</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
 
-				<tr>
-					<td>Item 3</td>
-					<td>45</td>
-					<td class="status-high">High</td>
-					<td>11/28/2026</td>
-					<td>
-						<a href="InventoryEdit.html">Edit</a>
-					</td>
-				</tr>
+                <tbody>
 
-			</tbody>
+                    <tr>
+                        <td>Item 1</td>
+                        <td>25</td>
+                        <td class="status-low">Low</td>
+                        <td>09/28/2026</td>
+                        <td>
+                            <a href="InventoryEdit.html">Edit</a>
+                        </td>
+                    </tr>
 
-		</table>
+                    <tr>
+                        <td>Item 2</td>
+                        <td>35</td>
+                        <td class="status-normal">Normal</td>
+                        <td>10/28/2026</td>
+                        <td>
+                            <a href="InventoryEdit.html">Edit</a>
+                        </td>
+                    </tr>
 
-	</section>
+                    <tr>
+                        <td>Item 3</td>
+                        <td>45</td>
+                        <td class="status-high">High</td>
+                        <td>11/28/2026</td>
+                        <td>
+                            <a href="InventoryEdit.html">Edit</a>
+                        </td>
+                    </tr>
 
-</main>
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>

@@ -1,28 +1,59 @@
+<!DOCTYPE html>
 <html>
+
 <head>
-    <title>LogIn</title>
+    <title>Log In</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="font-size: larger; font-family: Courier New; text-align: center;">
-<h1><br><br> StockWise POS <br><br></h1>
 
- <form>
-    <input type="text" id="username" name="username" required><br>
-     <label for="username" style="font-size: small;">Username</label>
-	 <br><br>
-<input type="password" id="password" name="password" required><br>
-<label for="password" style="font-size: small;">Password</label>
-	<br><br><br>
+<body>
 
-    <button type="submit">Login</button>
-    <a href="Create.html">
-    <button type="button">Create</button></a>
- </form>
+    <main class="login-page">
 
- <br><br><br><br>
+        <section class="login-container">
 
-<footer style="font-size: x-small;">
-	<p>--HHAK-StockWise--</p>
-</footer>
+            <h1>StockWise POS</h1>
+
+            <form class="login-form">
+
+                <div class="form-row">
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        required
+                    >
+                    <label for="username">Username</label>
+                </div>
+
+                <div class="form-row">
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                    >
+                    <label for="password">Password</label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit">Login</button>
+
+                    <a href="Create.html">
+                        <button type="button">Create</button>
+                    </a>
+                </div>
+
+            </form>
+
+        </section>
+
+        <footer class="login-footer">
+            <p>--HHAK-StockWise--</p>
+        </footer>
+
+    </main>
 
 </body>
+
 </html>
