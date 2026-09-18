@@ -38,16 +38,20 @@
 
         <section class="rewards-controls">
 
-            <form class="search-form">
-                <label for="search">Search</label>
+            <div class="search-form">
+
+                <label for="rewards-search">
+                    Search
+                </label>
 
                 <input
                     type="search"
-                    id="search"
+                    id="rewards-search"
                     name="search"
-                    placeholder="Search customer"
+                    placeholder="Search customer or customer number"
                 >
-            </form>
+
+            </div>
 
             <a href="RewardAdd.html" class="add-button">
                 Add
@@ -62,6 +66,7 @@
             <table>
 
                 <thead>
+
                     <tr>
                         <th>Customer No.</th>
                         <th>Customer</th>
@@ -70,11 +75,16 @@
                         <th>Credit</th>
                         <th>Action</th>
                     </tr>
+
                 </thead>
 
-                <tbody>
+                <tbody id="rewards-table-body">
 
-                    <tr>
+                    <tr
+                        class="reward-row"
+                        data-customer-number="CXN00001"
+                        data-customer="Keon"
+                    >
                         <td>CXN00001</td>
                         <td>Keon</td>
                         <td>25</td>
@@ -82,17 +92,29 @@
                         <td>25</td>
 
                         <td class="table-actions">
-                            <a href="RewardsView.html" class="view-button">
+
+                            <a
+                                href="RewardsView.html"
+                                class="view-button"
+                            >
                                 View
                             </a>
 
-                            <a href="RewardEdit.html" class="edit-button">
+                            <a
+                                href="RewardEdit.html"
+                                class="edit-button"
+                            >
                                 Edit
                             </a>
+
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr
+                        class="reward-row"
+                        data-customer-number="CXN00002"
+                        data-customer="Azriel"
+                    >
                         <td>CXN00002</td>
                         <td>Azriel</td>
                         <td>35</td>
@@ -100,17 +122,29 @@
                         <td>35</td>
 
                         <td class="table-actions">
-                            <a href="RewardsView.html" class="view-button">
+
+                            <a
+                                href="RewardsView.html"
+                                class="view-button"
+                            >
                                 View
                             </a>
 
-                            <a href="RewardEdit.html" class="edit-button">
+                            <a
+                                href="RewardEdit.html"
+                                class="edit-button"
+                            >
                                 Edit
                             </a>
+
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr
+                        class="reward-row"
+                        data-customer-number="CXN00003"
+                        data-customer="Haziel"
+                    >
                         <td>CXN00003</td>
                         <td>Haziel</td>
                         <td>45</td>
@@ -118,17 +152,29 @@
                         <td>45</td>
 
                         <td class="table-actions">
-                            <a href="RewardsView.html" class="view-button">
+
+                            <a
+                                href="RewardsView.html"
+                                class="view-button"
+                            >
                                 View
                             </a>
 
-                            <a href="RewardEdit.html" class="edit-button">
+                            <a
+                                href="RewardEdit.html"
+                                class="edit-button"
+                            >
                                 Edit
                             </a>
+
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr
+                        class="reward-row"
+                        data-customer-number="CXN00004"
+                        data-customer="Hannah"
+                    >
                         <td>CXN00004</td>
                         <td>Hannah</td>
                         <td>55</td>
@@ -136,13 +182,21 @@
                         <td>55</td>
 
                         <td class="table-actions">
-                            <a href="RewardsView.html" class="view-button">
+
+                            <a
+                                href="RewardsView.html"
+                                class="view-button"
+                            >
                                 View
                             </a>
 
-                            <a href="RewardEdit.html" class="edit-button">
+                            <a
+                                href="RewardEdit.html"
+                                class="edit-button"
+                            >
                                 Edit
                             </a>
+
                         </td>
                     </tr>
 
@@ -150,9 +204,15 @@
 
             </table>
 
+            <p id="rewards-no-results" hidden>
+                No customers found.
+            </p>
+
         </section>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 

@@ -38,49 +38,83 @@
 
         <h2>Customer Details</h2>
 
-        <form>
+        <form id="reward-edit-form">
 
             <div class="form-row">
-                <label for="name">Customer Name</label>
+
+                <label for="reward-edit-name">
+                    Customer Name
+                </label>
+
                 <input
                     type="text"
-                    id="name"
+                    id="reward-edit-name"
                     name="name"
+                    value="Keon"
                     required
                 >
+
             </div>
 
             <div class="form-row">
-                <label for="phonenumber">Phone Number</label>
+
+                <label for="reward-edit-phone">
+                    Phone Number
+                </label>
+
                 <input
                     type="tel"
-                    id="phonenumber"
+                    id="reward-edit-phone"
                     name="phonenumber"
+                    value="09171234567"
                     required
                 >
+
             </div>
 
             <div class="form-row">
-                <label for="email">Email Address</label>
+
+                <label for="reward-edit-email">
+                    Email Address
+                </label>
+
                 <input
                     type="email"
-                    id="email"
+                    id="reward-edit-email"
                     name="email"
+                    value="keon@email.com"
                     required
                 >
+
             </div>
+
+            <p
+                id="reward-edit-message"
+                class="form-message"
+                hidden
+            ></p>
 
             <div class="form-actions">
 
-                <button type="submit" id="save">
+                <button
+                    type="submit"
+                    id="reward-save"
+                >
                     Save
                 </button>
 
-                <button type="button" id="remove">
+                <button
+                    type="button"
+                    id="reward-remove"
+                    class="remove-button"
+                >
                     Remove
                 </button>
 
-                <a href="Rewards.html" class="cancel-button">
+                <a
+                    href="Rewards.html"
+                    class="cancel-button"
+                >
                     Cancel
                 </a>
 
@@ -89,6 +123,8 @@
         </form>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 

@@ -38,60 +38,99 @@
 
         <h2>Edit Product</h2>
 
-        <form>
+        <form id="inventory-edit-form">
 
             <div class="form-row">
-                <label for="category">Category:</label>
+
+                <label for="edit-category">
+                    Category:
+                </label>
+
                 <input
                     type="text"
-                    id="category"
+                    id="edit-category"
                     name="category"
+                    value="Rice"
                     required
                 >
+
             </div>
 
             <div class="form-row">
-                <label for="item-name">Item Name:</label>
+
+                <label for="edit-item-name">
+                    Item Name:
+                </label>
+
                 <input
                     type="text"
-                    id="item-name"
+                    id="edit-item-name"
                     name="item-name"
+                    value="Rice"
                     required
                 >
+
             </div>
 
             <div class="form-row">
-                <label for="expiration-date">Expiration Date:</label>
+
+                <label for="edit-expiration-date">
+                    Expiration Date:
+                </label>
+
                 <input
                     type="date"
-                    id="expiration-date"
+                    id="edit-expiration-date"
                     name="expiration-date"
+                    value="2026-09-28"
                     required
                 >
+
             </div>
 
             <div class="form-row">
-                <label for="quantity">Quantity:</label>
+
+                <label for="edit-quantity">
+                    Quantity:
+                </label>
+
                 <input
                     type="number"
-                    id="quantity"
+                    id="edit-quantity"
                     name="quantity"
+                    value="25"
                     min="0"
                     required
                 >
+
             </div>
+
+            <p
+                id="inventory-edit-message"
+                class="form-message"
+                hidden
+            ></p>
 
             <div class="form-actions">
 
-                <button type="button" id="remove">
+                <button
+                    type="button"
+                    id="remove-inventory-item"
+                >
                     Remove Item
                 </button>
 
-                <button type="submit" id="save">
+                <button
+                    type="submit"
+                    id="save"
+                >
                     Save
                 </button>
 
-                <a href="Inventory.html" class="cancel-button">
+                <a
+                    href="Inventory.html"
+                    class="cancel-button"
+                >
                     Cancel
                 </a>
 
@@ -100,6 +139,8 @@
         </form>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 

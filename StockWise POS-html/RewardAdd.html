@@ -38,37 +38,61 @@
 
         <h2>Customer Details</h2>
 
-        <form>
+        <form id="reward-add-form">
 
             <div class="form-row">
-                <label for="name">Customer Name</label>
+
+                <label for="reward-name">
+                    Customer Name
+                </label>
+
                 <input
                     type="text"
-                    id="name"
+                    id="reward-name"
                     name="name"
+                    placeholder="Enter customer name"
                     required
                 >
+
             </div>
 
             <div class="form-row">
-                <label for="phonenumber">Phone Number</label>
+
+                <label for="reward-phone">
+                    Phone Number
+                </label>
+
                 <input
                     type="tel"
-                    id="phonenumber"
+                    id="reward-phone"
                     name="phonenumber"
+                    placeholder="Enter phone number"
                     required
                 >
+
             </div>
 
             <div class="form-row">
-                <label for="email">Email Address</label>
+
+                <label for="reward-email">
+                    Email Address
+                </label>
+
                 <input
                     type="email"
-                    id="email"
+                    id="reward-email"
                     name="email"
+                    placeholder="Enter email address"
                     required
                 >
+
             </div>
+
+            <p
+                id="reward-add-message"
+                class="form-message"
+                hidden
+            ></p>
 
             <div class="form-actions">
 
@@ -76,7 +100,10 @@
                     Add
                 </button>
 
-                <a href="Rewards.html" class="cancel-button">
+                <a
+                    href="Rewards.html"
+                    class="cancel-button"
+                >
                     Cancel
                 </a>
 
@@ -85,6 +112,8 @@
         </form>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 

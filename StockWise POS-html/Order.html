@@ -40,36 +40,116 @@
 
             <div class="search-area">
 
-                <form>
+                <form onsubmit="return false;">
+
                     <input
                         type="search"
                         id="search"
                         name="search"
-                        placeholder="Search item"
+                        placeholder="Search product"
                     >
 
                     <button type="button">
                         Scan Item / Barcode
                     </button>
+
                 </form>
 
             </div>
 
-            <h3 class="category-title">Category</h3>
+            <h3 class="category-title">Products</h3>
 
             <div class="product-grid">
 
-                <button type="button">Product 1</button>
-                <button type="button">Product 2</button>
-                <button type="button">Product 3</button>
+                <button
+                    type="button"
+                    class="product-button"
+                    data-name="Rice"
+                    data-price="60"
+                >
+                    Rice<br>
+                    ₱60.00
+                </button>
 
-                <button type="button">Product 4</button>
-                <button type="button">Product 5</button>
-                <button type="button">Product 6</button>
+                <button
+                    type="button"
+                    class="product-button"
+                    data-name="Cooking Oil"
+                    data-price="95"
+                >
+                    Cooking Oil<br>
+                    ₱95.00
+                </button>
 
-                <button type="button">Product 7</button>
-                <button type="button">Product 8</button>
-                <button type="button">Product 9</button>
+                <button
+                    type="button"
+                    class="product-button"
+                    data-name="Sugar"
+                    data-price="75"
+                >
+                    Sugar<br>
+                    ₱75.00
+                </button>
+
+                <button
+                    type="button"
+                    class="product-button"
+                    data-name="Egg"
+                    data-price="10"
+                >
+                    Egg<br>
+                    ₱10.00
+                </button>
+
+                <button
+                    type="button"
+                    class="product-button"
+                    data-name="Monggo"
+                    data-price="85"
+                >
+                    Monggo<br>
+                    ₱85.00
+                </button>
+
+                <button
+                    type="button"
+                    class="product-button"
+                    data-name="Bihon"
+                    data-price="45"
+                >
+                    Bihon<br>
+                    ₱45.00
+                </button>
+
+                <button
+                    type="button"
+                    class="product-button"
+                    data-name="Margarine"
+                    data-price="55"
+                >
+                    Margarine<br>
+                    ₱55.00
+                </button>
+
+                <button
+                    type="button"
+                    class="product-button"
+                    data-name="Peanuts"
+                    data-price="40"
+                >
+                    Peanuts<br>
+                    ₱40.00
+                </button>
+
+                <button
+                    type="button"
+                    class="product-button"
+                    data-name="Flour"
+                    data-price="65"
+                >
+                    Flour<br>
+                    ₱65.00
+                </button>
 
             </div>
 
@@ -79,37 +159,40 @@
 
             <h3>Customer Order List</h3>
 
-            <div class="order-items">
+            <p id="empty-order">
+                No items added yet.
+            </p>
 
-                <p>
-                    <span>Item 1</span>
-                    <span>0.00</span>
-                </p>
+            <div
+                class="order-items"
+                id="order-items"
+            ></div>
 
-                <p>
-                    <span>Item 2</span>
-                    <span>0.00</span>
-                </p>
+            <div class="order-total">
 
-                <p>
-                    <span>Item 3</span>
-                    <span>0.00</span>
-                </p>
+                <strong>Total</strong>
 
-                <p>
-                    <span>Item 4</span>
-                    <span>0.00</span>
-                </p>
+                <strong id="order-total">
+                    ₱0.00
+                </strong>
 
             </div>
 
             <div class="order-actions">
 
-                <a href="CompleteOrder.html" class="complete-button">
+                <a
+                    href="CompleteOrder.html"
+                    class="complete-button"
+                    id="complete-order"
+                >
                     Complete
                 </a>
 
-                <button type="button" class="remove-button">
+                <button
+                    type="button"
+                    class="remove-button"
+                    id="remove-item"
+                >
                     Remove
                 </button>
 
@@ -118,6 +201,8 @@
         </section>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 

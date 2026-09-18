@@ -40,17 +40,17 @@
 
             <div class="summary-card">
                 <h4>Current Stocks</h4>
-                <p>5</p>
+                <p id="current-stocks">0</p>
             </div>
 
             <div class="summary-card">
                 <h4>Low Stocks</h4>
-                <p>5</p>
+                <p id="low-stocks">0</p>
             </div>
 
             <div class="summary-card">
                 <h4>Expiration Reminder</h4>
-                <p>5</p>
+                <p id="expiration-reminder">0</p>
             </div>
 
         </section>
@@ -58,23 +58,26 @@
 
         <section class="inventory-controls">
 
-            <form class="search-form">
+            <div class="search-form">
 
                 <input
                     type="search"
-                    id="search"
+                    id="inventory-search"
                     name="search"
                     placeholder="Search item / product"
                 >
 
-                <button type="button">Category</button>
+                <select id="status-filter">
+                    <option value="all">All Status</option>
+                    <option value="low">Low</option>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                </select>
 
-            </form>
+            </div>
 
-            <a href="InventoryAdd.html">
-                <button type="button" class="add-product">
-                    Add Product
-                </button>
+            <a href="InventoryAdd.html" class="add-button">
+                Add Product
             </a>
 
         </section>
@@ -94,10 +97,16 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="inventory-table-body">
 
-                    <tr>
-                        <td>Item 1</td>
+                    <tr
+                        class="inventory-row"
+                        data-product="Rice"
+                        data-status="low"
+                        data-stock="25"
+                        data-expiring="true"
+                    >
+                        <td>Rice</td>
                         <td>25</td>
                         <td class="status-low">Low</td>
                         <td>09/28/2026</td>
@@ -106,8 +115,14 @@
                         </td>
                     </tr>
 
-                    <tr>
-                        <td>Item 2</td>
+                    <tr
+                        class="inventory-row"
+                        data-product="Cooking Oil"
+                        data-status="normal"
+                        data-stock="35"
+                        data-expiring="false"
+                    >
+                        <td>Cooking Oil</td>
                         <td>35</td>
                         <td class="status-normal">Normal</td>
                         <td>10/28/2026</td>
@@ -116,8 +131,14 @@
                         </td>
                     </tr>
 
-                    <tr>
-                        <td>Item 3</td>
+                    <tr
+                        class="inventory-row"
+                        data-product="Sugar"
+                        data-status="high"
+                        data-stock="45"
+                        data-expiring="false"
+                    >
+                        <td>Sugar</td>
                         <td>45</td>
                         <td class="status-high">High</td>
                         <td>11/28/2026</td>
@@ -130,9 +151,15 @@
 
             </table>
 
+            <p id="inventory-no-results" hidden>
+                No products found.
+            </p>
+
         </section>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 
