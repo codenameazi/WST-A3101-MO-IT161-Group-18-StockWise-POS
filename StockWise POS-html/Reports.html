@@ -36,21 +36,45 @@
 
     <main class="reports-page">
 
+        <section class="report-controls">
+
+            <label for="report-period">
+                Report Period
+            </label>
+
+            <select id="report-period">
+                <option value="today">Today</option>
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+            </select>
+
+        </section>
+
+
         <section class="report-summary">
 
             <div>
                 <h5>Total Sales</h5>
-                <p>25,000</p>
+
+                <p id="report-sales">
+                    ₱25,000
+                </p>
             </div>
 
             <div>
                 <h5>Estimated Profit</h5>
-                <p>5,000</p>
+
+                <p id="report-profit">
+                    ₱5,000
+                </p>
             </div>
 
             <div>
                 <h5>Total Orders</h5>
-                <p>200</p>
+
+                <p id="report-orders">
+                    200
+                </p>
             </div>
 
         </section>
@@ -60,8 +84,11 @@
 
             <h5>Sales Overview</h5>
 
-            <div class="graph">
-                Graph
+            <div
+                class="graph"
+                id="sales-overview"
+            >
+                Today Sales: ₱25,000
             </div>
 
         </section>
@@ -70,15 +97,24 @@
         <section class="product-report">
 
             <div class="report-heading">
+
                 <h5>Fast Products</h5>
 
-                <a href="ReportsBreakdown.html" class="view-link">
+                <a
+                    href="ReportsBreakdown.html"
+                    class="view-link"
+                >
                     View
                 </a>
+
             </div>
 
-            <p>Item 1</p>
-            <p>Item 2</p>
+            <div id="fast-products">
+
+                <p>Rice</p>
+                <p>Cooking Oil</p>
+
+            </div>
 
         </section>
 
@@ -86,19 +122,30 @@
         <section class="product-report">
 
             <div class="report-heading">
+
                 <h5>Slow Products</h5>
 
-                <a href="ReportsBreakdown.html" class="view-link">
+                <a
+                    href="ReportsBreakdown.html"
+                    class="view-link"
+                >
                     View
                 </a>
+
             </div>
 
-            <p>Item 3</p>
-            <p>Item 4</p>
+            <div id="slow-products">
+
+                <p>Margarine</p>
+                <p>Peanuts</p>
+
+            </div>
 
         </section>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 

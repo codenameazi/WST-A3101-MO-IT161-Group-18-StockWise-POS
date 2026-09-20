@@ -1008,10 +1008,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (rewardEditForm) {
 
-        // =========================================
-        // SAVE CUSTOMER CHANGES
-        // =========================================
-
         rewardEditForm.addEventListener(
             "submit",
             function (event) {
@@ -1112,10 +1108,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-        // =========================================
-        // REMOVE CUSTOMER
-        // =========================================
-
         if (rewardRemoveButton) {
 
             rewardRemoveButton.addEventListener(
@@ -1168,10 +1160,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // =========================================
-        // REWARD EDIT MESSAGE
-        // =========================================
-
         function showRewardEditMessage(
             message,
             success
@@ -1189,6 +1177,723 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
 
                 rewardEditMessage.style.color =
+                    "#9B4D55";
+            }
+        }
+    }
+
+
+
+    // =========================================
+    // REPORTS PAGE
+    // =========================================
+
+    const reportPeriod =
+        document.getElementById("report-period");
+
+    const reportSales =
+        document.getElementById("report-sales");
+
+    const reportProfit =
+        document.getElementById("report-profit");
+
+    const reportOrders =
+        document.getElementById("report-orders");
+
+    const salesOverview =
+        document.getElementById("sales-overview");
+
+    const fastProducts =
+        document.getElementById("fast-products");
+
+    const slowProducts =
+        document.getElementById("slow-products");
+
+
+    if (reportPeriod) {
+
+        const reportData = {
+
+            today: {
+                sales: "₱25,000",
+                profit: "₱5,000",
+                orders: "200",
+                overview: "Today Sales: ₱25,000",
+                fast: [
+                    "Rice",
+                    "Cooking Oil"
+                ],
+                slow: [
+                    "Margarine",
+                    "Peanuts"
+                ]
+            },
+
+            week: {
+                sales: "₱145,000",
+                profit: "₱29,000",
+                orders: "1,120",
+                overview: "This Week Sales: ₱145,000",
+                fast: [
+                    "Rice",
+                    "Sugar"
+                ],
+                slow: [
+                    "Flour",
+                    "Margarine"
+                ]
+            },
+
+            month: {
+                sales: "₱620,000",
+                profit: "₱124,000",
+                orders: "4,850",
+                overview: "This Month Sales: ₱620,000",
+                fast: [
+                    "Cooking Oil",
+                    "Rice"
+                ],
+                slow: [
+                    "Peanuts",
+                    "Bihon"
+                ]
+            }
+        };
+
+
+        function updateReport() {
+
+            const selectedPeriod =
+                reportPeriod.value;
+
+            const selectedData =
+                reportData[selectedPeriod];
+
+
+            reportSales.textContent =
+                selectedData.sales;
+
+            reportProfit.textContent =
+                selectedData.profit;
+
+            reportOrders.textContent =
+                selectedData.orders;
+
+            salesOverview.textContent =
+                selectedData.overview;
+
+
+            fastProducts.innerHTML = "";
+
+            selectedData.fast.forEach(
+                function (product) {
+
+                    const productItem =
+                        document.createElement("p");
+
+                    productItem.textContent =
+                        product;
+
+                    fastProducts.appendChild(
+                        productItem
+                    );
+                }
+            );
+
+
+            slowProducts.innerHTML = "";
+
+            selectedData.slow.forEach(
+                function (product) {
+
+                    const productItem =
+                        document.createElement("p");
+
+                    productItem.textContent =
+                        product;
+
+                    slowProducts.appendChild(
+                        productItem
+                    );
+                }
+            );
+        }
+
+
+        reportPeriod.addEventListener(
+            "change",
+            updateReport
+        );
+
+
+        updateReport();
+    }
+
+
+
+    // =========================================
+    // REPORTS BREAKDOWN PAGE
+    // =========================================
+
+    const breakdownSearch =
+        document.getElementById(
+            "breakdown-search"
+        );
+
+    const breakdownSort =
+        document.getElementById(
+            "breakdown-sort"
+        );
+
+    const breakdownTableBody =
+        document.getElementById(
+            "breakdown-table-body"
+        );
+
+    const breakdownRows =
+        Array.from(
+            document.querySelectorAll(
+                ".breakdown-row"
+            )
+        );
+
+    const breakdownNoResults =
+        document.getElementById(
+            "breakdown-no-results"
+        );
+
+
+    if (
+        breakdownSearch &&
+        breakdownSort &&
+        breakdownTableBody &&
+        breakdownRows.length > 0
+    ) {
+
+        const originalBreakdownOrder =
+            breakdownRows.slice();
+
+
+        function updateBreakdown() {
+
+            const searchValue =
+                breakdownSearch.value
+                    .toLowerCase()
+                    .trim();
+
+            const selectedSort =
+                breakdownSort.value;
+
+            let sortedRows =
+                originalBreakdownOrder.slice();
+
+
+            if (selectedSort === "sold-high") {
+
+                sortedRows.sort(
+                    function (a, b) {
+
+                        return Number(
+                            b.dataset.sold
+                        ) - Number(
+                            a.dataset.sold
+                        );
+                    }
+                );
+
+            } else if (
+                selectedSort === "sold-low"
+            ) {
+
+                sortedRows.sort(
+                    function (a, b) {
+
+                        return Number(
+                            a.dataset.sold
+                        ) - Number(
+                            b.dataset.sold
+                        );
+                    }
+                );
+
+            } else if (
+                selectedSort === "revenue-high"
+            ) {
+
+                sortedRows.sort(
+                    function (a, b) {
+
+                        return Number(
+                            b.dataset.revenue
+                        ) - Number(
+                            a.dataset.revenue
+                        );
+                    }
+                );
+
+            } else if (
+                selectedSort === "revenue-low"
+            ) {
+
+                sortedRows.sort(
+                    function (a, b) {
+
+                        return Number(
+                            a.dataset.revenue
+                        ) - Number(
+                            b.dataset.revenue
+                        );
+                    }
+                );
+            }
+
+
+            let visibleProducts = 0;
+
+
+            sortedRows.forEach(
+                function (row) {
+
+                    breakdownTableBody.appendChild(
+                        row
+                    );
+
+
+                    const productName =
+                        row.dataset.product
+                            .toLowerCase();
+
+
+                    if (
+                        productName.includes(
+                            searchValue
+                        )
+                    ) {
+
+                        row.style.display = "";
+                        visibleProducts++;
+
+                    } else {
+
+                        row.style.display = "none";
+                    }
+                }
+            );
+
+
+            if (visibleProducts === 0) {
+
+                breakdownNoResults.hidden = false;
+
+            } else {
+
+                breakdownNoResults.hidden = true;
+            }
+        }
+
+
+        breakdownSearch.addEventListener(
+            "input",
+            updateBreakdown
+        );
+
+
+        breakdownSort.addEventListener(
+            "change",
+            updateBreakdown
+        );
+
+
+        updateBreakdown();
+    }
+
+
+
+    // =========================================
+    // LOGIN PAGE
+    // =========================================
+
+    const loginForm =
+        document.getElementById("login-form");
+
+    const loginUsername =
+        document.getElementById("username");
+
+    const loginPassword =
+        document.getElementById("password");
+
+    const loginMessage =
+        document.getElementById("login-message");
+
+    const loginButton =
+        document.getElementById("login-button");
+
+
+    if (loginForm) {
+
+        loginForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const username =
+                    loginUsername.value.trim();
+
+                const password =
+                    loginPassword.value;
+
+
+                if (
+                    username === "" ||
+                    password === ""
+                ) {
+
+                    showLoginMessage(
+                        "Please enter your username and password.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (username.length < 3) {
+
+                    showLoginMessage(
+                        "Username must contain at least 3 characters.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (password.length < 6) {
+
+                    showLoginMessage(
+                        "Password must contain at least 6 characters.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                loginButton.disabled = true;
+                loginButton.textContent = "Logging in...";
+
+
+                authenticateUser(
+                    username,
+                    password
+                );
+            }
+        );
+
+
+        function authenticateUser(
+            username,
+            password
+        ) {
+
+            /*
+                DATABASE READY AREA
+
+                Kapag may backend/database na,
+                dito ilalagay ang request sa server.
+
+                The server should return whether
+                the username and password are valid.
+
+                Password verification must happen
+                on the server, not inside this file.
+            */
+
+
+            const databaseConnected = false;
+
+
+            if (!databaseConnected) {
+
+                demoLogin();
+
+                return;
+            }
+
+
+            /*
+                FUTURE DATABASE RESULT EXAMPLE:
+
+                if (loginAccepted) {
+
+                    loginSuccess();
+
+                } else {
+
+                    loginFailed();
+                }
+            */
+        }
+
+
+        function demoLogin() {
+
+            /*
+                Temporary frontend demo only.
+
+                Since wala pang database,
+                valid-format credentials are accepted.
+            */
+
+            loginSuccess();
+        }
+
+
+        function loginSuccess() {
+
+            showLoginMessage(
+                "Login successful.",
+                true
+            );
+
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "Dashboard.html";
+                },
+                500
+            );
+        }
+
+
+        function loginFailed() {
+
+            showLoginMessage(
+                "Incorrect username or password.",
+                false
+            );
+
+
+            loginButton.disabled = false;
+            loginButton.textContent = "Login";
+        }
+
+
+        function loginError() {
+
+            showLoginMessage(
+                "Unable to log in. Please try again.",
+                false
+            );
+
+
+            loginButton.disabled = false;
+            loginButton.textContent = "Login";
+        }
+
+
+        function showLoginMessage(
+            message,
+            success
+        ) {
+
+            loginMessage.hidden = false;
+            loginMessage.textContent = message;
+
+
+            if (success) {
+
+                loginMessage.style.color =
+                    "#668575";
+
+            } else {
+
+                loginMessage.style.color =
+                    "#9B4D55";
+            }
+        }
+    }
+
+
+
+    // =========================================
+    // CREATE ACCOUNT PAGE
+    // =========================================
+
+    const createAccountForm =
+        document.getElementById(
+            "create-account-form"
+        );
+
+    const firstNameInput =
+        document.getElementById("first-name");
+
+    const lastNameInput =
+        document.getElementById("last-name");
+
+    const createEmailInput =
+        document.getElementById("email");
+
+    const createUsernameInput =
+        document.getElementById(
+            "create-username"
+        );
+
+    const createPasswordInput =
+        document.getElementById(
+            "create-password"
+        );
+
+    const createAccountMessage =
+        document.getElementById(
+            "create-account-message"
+        );
+
+
+    if (createAccountForm) {
+
+        createAccountForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const firstName =
+                    firstNameInput.value.trim();
+
+                const lastName =
+                    lastNameInput.value.trim();
+
+                const email =
+                    createEmailInput.value.trim();
+
+                const username =
+                    createUsernameInput.value.trim();
+
+                const password =
+                    createPasswordInput.value;
+
+
+                if (
+                    firstName === "" ||
+                    lastName === "" ||
+                    email === "" ||
+                    username === "" ||
+                    password === ""
+                ) {
+
+                    showCreateAccountMessage(
+                        "Please complete all account information.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    firstName.length < 2 ||
+                    lastName.length < 2
+                ) {
+
+                    showCreateAccountMessage(
+                        "First name and last name must contain at least 2 characters.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                const namePattern =
+                    /^[A-Za-z\s'-]+$/;
+
+
+                if (
+                    !namePattern.test(firstName) ||
+                    !namePattern.test(lastName)
+                ) {
+
+                    showCreateAccountMessage(
+                        "Please enter a valid first name and last name.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                const emailPattern =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+                if (!emailPattern.test(email)) {
+
+                    showCreateAccountMessage(
+                        "Please enter a valid email address.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (username.length < 3) {
+
+                    showCreateAccountMessage(
+                        "Username must contain at least 3 characters.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (password.length < 6) {
+
+                    showCreateAccountMessage(
+                        "Password must contain at least 6 characters.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                showCreateAccountMessage(
+                    "Account information is valid. Database registration will be connected later.",
+                    true
+                );
+
+
+                createAccountForm.reset();
+            }
+        );
+
+
+        function showCreateAccountMessage(
+            message,
+            success
+        ) {
+
+            createAccountMessage.hidden = false;
+            createAccountMessage.textContent =
+                message;
+
+
+            if (success) {
+
+                createAccountMessage.style.color =
+                    "#668575";
+
+            } else {
+
+                createAccountMessage.style.color =
                     "#9B4D55";
             }
         }
