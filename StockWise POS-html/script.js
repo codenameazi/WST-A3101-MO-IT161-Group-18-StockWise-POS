@@ -1194,4 +1194,167 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // =========================================
+    // COMPLETE ORDER PAGE
+    // =========================================
+
+    const coOrderItems =
+        document.getElementById("co-order-items");
+
+    const coOrderTotal =
+        document.getElementById("co-order-total");
+
+    const paymentButtons =
+        document.querySelectorAll(".payment-button");
+
+    const printButton =
+        document.getElementById("print-receipt");
+
+    const cancelOrderButton =
+        document.getElementById("cancel-order");
+
+    const newOrderButton =
+        document.getElementById("new-order");
+
+
+    if (coOrderItems && coOrderTotal) {
+
+        const savedOrder =
+            JSON.parse(
+                sessionStorage.getItem("stockwiseOrder")
+            ) || [];
+
+        let total = 0;
+
+        coOrderItems.innerHTML = "";
+
+
+        if (savedOrder.length === 0) {
+
+            coOrderItems.innerHTML =
+                "<p>No items in this order.</p>";
+
+        } else {
+
+            savedOrder.forEach(function (item) {
+
+                const subtotal =
+                    item.price * item.quantity;
+
+                total += subtotal;
+
+                const row =
+                    document.createElement("p");
+
+                row.innerHTML = `
+                    <span>${item.name} <small>x${item.quantity}</small></span>
+                    <span>₱${subtotal.toFixed(2)}</span>
+                `;
+
+                coOrderItems.appendChild(row);
+            });
+        }
+
+
+        coOrderTotal.textContent =
+            "₱" + total.toFixed(2);
+    }
+
+
+    if (paymentButtons.length > 0) {
+
+        paymentButtons.forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                paymentButtons.forEach(function (btn) {
+                    btn.classList.remove("selected");
+                });
+
+                button.classList.add("selected");
+            });
+        });
+    }
+
+
+    if (printButton) {
+
+        printButton.addEventListener("click", function () {
+
+            window.print();
+        });
+    }
+
+
+    if (cancelOrderButton) {
+
+        cancelOrderButton.addEventListener(
+            "click",
+            function () {
+
+                const confirmed =
+                    confirm(
+                        "Are you sure you want to cancel this order?"
+                    );
+
+                if (confirmed) {
+
+                    sessionStorage.removeItem(
+                        "stockwiseOrder"
+                    );
+
+                    window.location.href = "Order.html";
+                }
+            }
+        );
+    }
+
+
+    if (newOrderButton) {
+
+        newOrderButton.addEventListener(
+            "click",
+            function () {
+
+                sessionStorage.removeItem(
+                    "stockwiseOrder"
+                );
+            }
+        );
+    }
+    
+    // =========================================
+    // DASHBOARD PAGE
+    // =========================================
+
+    const dashboardTotalSales =
+        document.getElementById("dashboard-total-sales");
+
+    const clickableCards =
+        document.querySelectorAll(".clickable-card");
+
+
+    if (dashboardTotalSales) {
+
+        const totalSales =
+            Number(
+                localStorage.getItem("stockwiseTotalSales")
+            ) || 0;
+
+        dashboardTotalSales.textContent =
+            "₱" + totalSales.toFixed(2);
+    }
+
+
+    if (clickableCards.length > 0) {
+
+        clickableCards.forEach(function (card) {
+
+            card.addEventListener("click", function () {
+
+                window.location.href =
+                    card.dataset.href;
+            });
+        });
+    }
 });

@@ -40,33 +40,11 @@
 
             <h3>Order List</h3>
 
-            <div class="order-items">
-
-                <p>
-                    <span>Item 1</span>
-                    <span>0.00</span>
-                </p>
-
-                <p>
-                    <span>Item 2</span>
-                    <span>0.00</span>
-                </p>
-
-                <p>
-                    <span>Item 3</span>
-                    <span>0.00</span>
-                </p>
-
-                <p>
-                    <span>Item 4</span>
-                    <span>0.00</span>
-                </p>
-
-            </div>
+            <div class="order-items" id="co-order-items"></div>
 
             <p>
                 <strong>Total</strong>
-                <span>0.00</span>
+                <span id="co-order-total">₱0.00</span>
             </p>
 
         </section>
@@ -75,15 +53,15 @@
 
             <h3>Payment Method</h3>
 
-            <button type="button">Cash</button>
-            <button type="button">Split Payment</button>
-            <button type="button">E-Wallet</button>
+            <button type="button" class="payment-button" data-method="Cash">Cash</button>
+            <button type="button" class="payment-button" data-method="Split Payment">Split Payment</button>
+            <button type="button" class="payment-button" data-method="E-Wallet">E-Wallet</button>
 
         </section>
 
         <section class="card">
 
-            <button type="button">
+            <button type="button" id="print-receipt">
                 Print
             </button>
 
@@ -97,11 +75,11 @@
                     Back
                 </a>
 
-                <button type="button" class="remove-button">
+                <button type="button" class="remove-button" id="cancel-order">
                     Cancel
                 </button>
 
-                <a href="Order.html" class="new-order-button">
+                <a href="Order.html" class="new-order-button" id="new-order">
                     New Order
                 </a>
 
@@ -110,6 +88,8 @@
         </section>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 
