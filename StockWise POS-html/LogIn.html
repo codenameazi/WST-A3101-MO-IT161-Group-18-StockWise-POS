@@ -14,34 +14,65 @@
 
             <h1>StockWise POS</h1>
 
-            <form class="login-form">
+            <form
+                class="login-form"
+                id="login-form"
+            >
 
                 <div class="form-row">
+
                     <input
                         type="text"
                         id="username"
                         name="username"
+                        autocomplete="username"
                         required
                     >
-                    <label for="username">Username</label>
+
+                    <label for="username">
+                        Username
+                    </label>
+
                 </div>
 
                 <div class="form-row">
+
                     <input
                         type="password"
                         id="password"
                         name="password"
+                        autocomplete="current-password"
                         required
                     >
-                    <label for="password">Password</label>
+
+                    <label for="password">
+                        Password
+                    </label>
+
                 </div>
 
-                <div class="form-actions">
-                    <button type="submit">Login</button>
+                <p
+                    id="login-message"
+                    class="form-message"
+                    hidden
+                ></p>
 
-                    <a href="Create.html">
-                        <button type="button">Create</button>
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        id="login-button"
+                    >
+                        Login
+                    </button>
+
+                    <a
+                        href="Create.html"
+                        class="create-button"
+                    >
+                        Create
                     </a>
+
                 </div>
 
             </form>
@@ -53,6 +84,8 @@
         </footer>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 

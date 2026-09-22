@@ -353,8 +353,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const matchesStatus =
                     selectedStatus === "all" ||
-                    productStatus ===
-                        selectedStatus;
+                    productStatus === selectedStatus;
 
 
                 if (
@@ -1008,10 +1007,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (rewardEditForm) {
 
-        // =========================================
-        // SAVE CUSTOMER CHANGES
-        // =========================================
-
         rewardEditForm.addEventListener(
             "submit",
             function (event) {
@@ -1112,10 +1107,6 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-        // =========================================
-        // REMOVE CUSTOMER
-        // =========================================
-
         if (rewardRemoveButton) {
 
             rewardRemoveButton.addEventListener(
@@ -1167,10 +1158,6 @@ document.addEventListener("DOMContentLoaded", function () {
             );
         }
 
-
-        // =========================================
-        // REWARD EDIT MESSAGE
-        // =========================================
 
         function showRewardEditMessage(
             message,
@@ -1357,4 +1344,1628 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
+
+
+    // =========================================
+    // REPORTS PAGE
+    // =========================================
+
+    const reportPeriod =
+        document.getElementById("report-period");
+
+    const reportSales =
+        document.getElementById("report-sales");
+
+    const reportProfit =
+        document.getElementById("report-profit");
+
+    const reportOrders =
+        document.getElementById("report-orders");
+
+    const salesOverview =
+        document.getElementById("sales-overview");
+
+    const fastProducts =
+        document.getElementById("fast-products");
+
+    const slowProducts =
+        document.getElementById("slow-products");
+
+
+    if (reportPeriod) {
+
+        const reportData = {
+
+            today: {
+                sales: "₱25,000",
+                profit: "₱5,000",
+                orders: "200",
+                overview: "Today Sales: ₱25,000",
+                fast: [
+                    "Rice",
+                    "Cooking Oil"
+                ],
+                slow: [
+                    "Margarine",
+                    "Peanuts"
+                ]
+            },
+
+            week: {
+                sales: "₱145,000",
+                profit: "₱29,000",
+                orders: "1,120",
+                overview: "This Week Sales: ₱145,000",
+                fast: [
+                    "Rice",
+                    "Sugar"
+                ],
+                slow: [
+                    "Flour",
+                    "Margarine"
+                ]
+            },
+
+            month: {
+                sales: "₱620,000",
+                profit: "₱124,000",
+                orders: "4,850",
+                overview: "This Month Sales: ₱620,000",
+                fast: [
+                    "Cooking Oil",
+                    "Rice"
+                ],
+                slow: [
+                    "Peanuts",
+                    "Bihon"
+                ]
+            }
+        };
+
+
+        function updateReport() {
+
+            const selectedPeriod =
+                reportPeriod.value;
+
+            const selectedData =
+                reportData[selectedPeriod];
+
+
+            reportSales.textContent =
+                selectedData.sales;
+
+            reportProfit.textContent =
+                selectedData.profit;
+
+            reportOrders.textContent =
+                selectedData.orders;
+
+            salesOverview.textContent =
+                selectedData.overview;
+
+
+            fastProducts.innerHTML = "";
+
+            selectedData.fast.forEach(
+                function (product) {
+
+                    const productItem =
+                        document.createElement("p");
+
+                    productItem.textContent =
+                        product;
+
+                    fastProducts.appendChild(
+                        productItem
+                    );
+                }
+            );
+
+
+            slowProducts.innerHTML = "";
+
+            selectedData.slow.forEach(
+                function (product) {
+
+                    const productItem =
+                        document.createElement("p");
+
+                    productItem.textContent =
+                        product;
+
+                    slowProducts.appendChild(
+                        productItem
+                    );
+                }
+            );
+        }
+
+
+        reportPeriod.addEventListener(
+            "change",
+            updateReport
+        );
+
+
+        updateReport();
+    }
+
+
+
+    // =========================================
+    // REPORTS BREAKDOWN PAGE
+    // =========================================
+
+    const breakdownSearch =
+        document.getElementById(
+            "breakdown-search"
+        );
+
+    const breakdownSort =
+        document.getElementById(
+            "breakdown-sort"
+        );
+
+    const breakdownTableBody =
+        document.getElementById(
+            "breakdown-table-body"
+        );
+
+    const breakdownRows =
+        Array.from(
+            document.querySelectorAll(
+                ".breakdown-row"
+            )
+        );
+
+    const breakdownNoResults =
+        document.getElementById(
+            "breakdown-no-results"
+        );
+
+
+    if (
+        breakdownSearch &&
+        breakdownSort &&
+        breakdownTableBody &&
+        breakdownRows.length > 0
+    ) {
+
+        const originalBreakdownOrder =
+            breakdownRows.slice();
+
+
+        function updateBreakdown() {
+
+            const searchValue =
+                breakdownSearch.value
+                    .toLowerCase()
+                    .trim();
+
+            const selectedSort =
+                breakdownSort.value;
+
+            let sortedRows =
+                originalBreakdownOrder.slice();
+
+
+            if (selectedSort === "sold-high") {
+
+                sortedRows.sort(
+                    function (a, b) {
+
+                        return Number(
+                            b.dataset.sold
+                        ) - Number(
+                            a.dataset.sold
+                        );
+                    }
+                );
+
+            } else if (
+                selectedSort === "sold-low"
+            ) {
+
+                sortedRows.sort(
+                    function (a, b) {
+
+                        return Number(
+                            a.dataset.sold
+                        ) - Number(
+                            b.dataset.sold
+                        );
+                    }
+                );
+
+            } else if (
+                selectedSort === "revenue-high"
+            ) {
+
+                sortedRows.sort(
+                    function (a, b) {
+
+                        return Number(
+                            b.dataset.revenue
+                        ) - Number(
+                            a.dataset.revenue
+                        );
+                    }
+                );
+
+            } else if (
+                selectedSort === "revenue-low"
+            ) {
+
+                sortedRows.sort(
+                    function (a, b) {
+
+                        return Number(
+                            a.dataset.revenue
+                        ) - Number(
+                            b.dataset.revenue
+                        );
+                    }
+                );
+            }
+
+
+            let visibleProducts = 0;
+
+
+            sortedRows.forEach(
+                function (row) {
+
+                    breakdownTableBody.appendChild(
+                        row
+                    );
+
+
+                    const productName =
+                        row.dataset.product
+                            .toLowerCase();
+
+
+                    if (
+                        productName.includes(
+                            searchValue
+                        )
+                    ) {
+
+                        row.style.display = "";
+                        visibleProducts++;
+
+                    } else {
+
+                        row.style.display = "none";
+                    }
+                }
+            );
+
+
+            if (visibleProducts === 0) {
+
+                breakdownNoResults.hidden = false;
+
+            } else {
+
+                breakdownNoResults.hidden = true;
+            }
+        }
+
+
+        breakdownSearch.addEventListener(
+            "input",
+            updateBreakdown
+        );
+
+
+        breakdownSort.addEventListener(
+            "change",
+            updateBreakdown
+        );
+
+
+        updateBreakdown();
+    }
+
+
+
+    // =========================================
+    // LOGIN PAGE
+    // =========================================
+
+    const loginForm =
+        document.getElementById("login-form");
+
+    const loginUsername =
+        document.getElementById("username");
+
+    const loginPassword =
+        document.getElementById("password");
+
+    const loginMessage =
+        document.getElementById("login-message");
+
+    const loginButton =
+        document.getElementById("login-button");
+
+
+    if (loginForm) {
+
+        loginForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const username =
+                    loginUsername.value.trim();
+
+                const password =
+                    loginPassword.value;
+
+
+                if (
+                    username === "" ||
+                    password === ""
+                ) {
+
+                    showLoginMessage(
+                        "Please enter your username and password.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (username.length < 3) {
+
+                    showLoginMessage(
+                        "Username must contain at least 3 characters.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (password.length < 6) {
+
+                    showLoginMessage(
+                        "Password must contain at least 6 characters.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                loginButton.disabled = true;
+                loginButton.textContent = "Logging in...";
+
+
+                authenticateUser(
+                    username,
+                    password
+                );
+            }
+        );
+
+
+        function authenticateUser(
+            username,
+            password
+        ) {
+
+            /*
+                DATABASE READY AREA
+
+                Kapag may backend/database na,
+                dito ilalagay ang request sa server.
+
+                The server should return whether
+                the username and password are valid.
+
+                Password verification must happen
+                on the server, not inside this file.
+            */
+
+
+            const databaseConnected = false;
+
+
+            if (!databaseConnected) {
+
+                demoLogin();
+
+                return;
+            }
+
+
+            /*
+                FUTURE DATABASE RESULT EXAMPLE:
+
+                if (loginAccepted) {
+
+                    loginSuccess();
+
+                } else {
+
+                    loginFailed();
+                }
+            */
+        }
+
+
+        function demoLogin() {
+
+            /*
+                Temporary frontend demo only.
+
+                Since wala pang database,
+                valid-format credentials are accepted.
+            */
+
+            loginSuccess();
+        }
+
+
+        function loginSuccess() {
+
+            showLoginMessage(
+                "Login successful.",
+                true
+            );
+
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "Dashboard.html";
+                },
+                500
+            );
+        }
+
+
+        function loginFailed() {
+
+            showLoginMessage(
+                "Incorrect username or password.",
+                false
+            );
+
+
+            loginButton.disabled = false;
+            loginButton.textContent = "Login";
+        }
+
+
+        function loginError() {
+
+            showLoginMessage(
+                "Unable to log in. Please try again.",
+                false
+            );
+
+
+            loginButton.disabled = false;
+            loginButton.textContent = "Login";
+        }
+
+
+        function showLoginMessage(
+            message,
+            success
+        ) {
+
+            loginMessage.hidden = false;
+            loginMessage.textContent = message;
+
+
+            if (success) {
+
+                loginMessage.style.color =
+                    "#668575";
+
+            } else {
+
+                loginMessage.style.color =
+                    "#9B4D55";
+            }
+        }
+    }
+
+
+
+    // =========================================
+    // CREATE ACCOUNT PAGE
+    // =========================================
+
+    const createAccountForm =
+        document.getElementById(
+            "create-account-form"
+        );
+
+    const firstNameInput =
+        document.getElementById("first-name");
+
+    const lastNameInput =
+        document.getElementById("last-name");
+
+    const createEmailInput =
+        document.getElementById("email");
+
+    const createUsernameInput =
+        document.getElementById(
+            "create-username"
+        );
+
+    const createPasswordInput =
+        document.getElementById(
+            "create-password"
+        );
+
+    const createAccountMessage =
+        document.getElementById(
+            "create-account-message"
+        );
+
+
+    if (createAccountForm) {
+
+        createAccountForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const firstName =
+                    firstNameInput.value.trim();
+
+                const lastName =
+                    lastNameInput.value.trim();
+
+                const email =
+                    createEmailInput.value.trim();
+
+                const username =
+                    createUsernameInput.value.trim();
+
+                const password =
+                    createPasswordInput.value;
+
+
+                if (
+                    firstName === "" ||
+                    lastName === "" ||
+                    email === "" ||
+                    username === "" ||
+                    password === ""
+                ) {
+
+                    showCreateAccountMessage(
+                        "Please complete all account information.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    firstName.length < 2 ||
+                    lastName.length < 2
+                ) {
+
+                    showCreateAccountMessage(
+                        "First name and last name must contain at least 2 characters.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                const namePattern =
+                    /^[A-Za-z\s'-]+$/;
+
+
+                if (
+                    !namePattern.test(firstName) ||
+                    !namePattern.test(lastName)
+                ) {
+
+                    showCreateAccountMessage(
+                        "Please enter a valid first name and last name.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                const emailPattern =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+                if (!emailPattern.test(email)) {
+
+                    showCreateAccountMessage(
+                        "Please enter a valid email address.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (username.length < 3) {
+
+                    showCreateAccountMessage(
+                        "Username must contain at least 3 characters.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (password.length < 6) {
+
+                    showCreateAccountMessage(
+                        "Password must contain at least 6 characters.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                showCreateAccountMessage(
+                    "Account information is valid. Database registration will be connected later.",
+                    true
+                );
+
+
+                createAccountForm.reset();
+            }
+        );
+
+
+        function showCreateAccountMessage(
+            message,
+            success
+        ) {
+
+            createAccountMessage.hidden = false;
+            createAccountMessage.textContent =
+                message;
+
+
+            if (success) {
+
+                createAccountMessage.style.color =
+                    "#668575";
+
+            } else {
+
+                createAccountMessage.style.color =
+                    "#9B4D55";
+            }
+        }
+    }
+
+
+
+    // =========================================
+    // REWARDS VIEW PAGE
+    // =========================================
+
+    const customerCredit =
+        document.getElementById("customer-credit");
+
+    const customerPoints =
+        document.getElementById("customer-points");
+
+    const payCreditButton =
+        document.getElementById("pay-credit-button");
+
+    const redeemPointsButton =
+        document.getElementById(
+            "redeem-points-button"
+        );
+
+    const rewardsViewMessage =
+        document.getElementById(
+            "rewards-view-message"
+        );
+
+
+    if (
+        customerCredit &&
+        customerPoints &&
+        payCreditButton &&
+        redeemPointsButton &&
+        rewardsViewMessage
+    ) {
+
+        let creditAmount =
+            Number(
+                customerCredit.textContent
+                    .replace("₱", "")
+                    .replace(",", "")
+                    .trim()
+            );
+
+        let rewardPoints =
+            Number(
+                customerPoints.textContent.trim()
+            );
+
+
+        function showRewardsViewMessage(
+            message,
+            success
+        ) {
+
+            rewardsViewMessage.hidden = false;
+
+            rewardsViewMessage.textContent =
+                message;
+
+
+            if (success) {
+
+                rewardsViewMessage.style.color =
+                    "#668575";
+
+            } else {
+
+                rewardsViewMessage.style.color =
+                    "#9B4D55";
+            }
+        }
+
+
+        function updateRewardButtons() {
+
+            if (creditAmount <= 0) {
+
+                payCreditButton.disabled = true;
+            }
+
+
+            if (rewardPoints <= 0) {
+
+                redeemPointsButton.disabled = true;
+            }
+        }
+
+
+        payCreditButton.addEventListener(
+            "click",
+            function () {
+
+                if (creditAmount <= 0) {
+
+                    showRewardsViewMessage(
+                        "This customer has no remaining credit.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                const confirmed =
+                    confirm(
+                        "Mark this customer's credit as paid?"
+                    );
+
+
+                if (!confirmed) {
+
+                    showRewardsViewMessage(
+                        "Credit payment was cancelled.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                creditAmount = 0;
+
+                customerCredit.textContent =
+                    "₱0.00";
+
+
+                showRewardsViewMessage(
+                    "Credit was marked as paid successfully.",
+                    true
+                );
+
+
+                updateRewardButtons();
+            }
+        );
+
+
+        redeemPointsButton.addEventListener(
+            "click",
+            function () {
+
+                if (rewardPoints <= 0) {
+
+                    showRewardsViewMessage(
+                        "This customer has no reward points available.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                const confirmed =
+                    confirm(
+                        "Redeem all " +
+                        rewardPoints +
+                        " available reward points?"
+                    );
+
+
+                if (!confirmed) {
+
+                    showRewardsViewMessage(
+                        "Reward redemption was cancelled.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                const redeemedPoints =
+                    rewardPoints;
+
+                rewardPoints = 0;
+
+                customerPoints.textContent =
+                    "0";
+
+
+                showRewardsViewMessage(
+                    redeemedPoints +
+                    " reward points were redeemed successfully.",
+                    true
+                );
+
+
+                updateRewardButtons();
+            }
+        );
+
+
+        updateRewardButtons();
+    }
+
+
+
+    // =========================================
+    // NOTIFICATIONS PAGE
+    // =========================================
+
+    const markAllReadButton =
+        document.getElementById(
+            "mark-all-read"
+        );
+
+    const notificationCards =
+        document.querySelectorAll(
+            ".notification-card"
+        );
+
+    const notificationMessage =
+        document.getElementById(
+            "notification-message"
+        );
+
+
+    if (
+        markAllReadButton &&
+        notificationCards.length > 0 &&
+        notificationMessage
+    ) {
+
+        function showNotificationMessage(
+            message
+        ) {
+
+            notificationMessage.hidden = false;
+
+            notificationMessage.textContent =
+                message;
+
+            notificationMessage.style.color =
+                "#668575";
+        }
+
+
+        function markNotificationAsRead(
+            card
+        ) {
+
+            if (
+                !card.classList.contains(
+                    "unread"
+                )
+            ) {
+
+                return false;
+            }
+
+
+            card.classList.remove(
+                "unread"
+            );
+
+
+            const notificationDot =
+                card.querySelector(
+                    ".notification-dot"
+                );
+
+
+            if (notificationDot) {
+
+                notificationDot.remove();
+            }
+
+
+            return true;
+        }
+
+
+        function updateNotificationButton() {
+
+            const unreadNotifications =
+                document.querySelectorAll(
+                    ".notification-card.unread"
+                );
+
+
+            if (
+                unreadNotifications.length === 0
+            ) {
+
+                markAllReadButton.textContent =
+                    "All notifications read";
+
+                markAllReadButton.disabled = true;
+
+            } else {
+
+                markAllReadButton.textContent =
+                    "Mark all as read";
+
+                markAllReadButton.disabled = false;
+            }
+        }
+
+
+        notificationCards.forEach(
+            function (card) {
+
+                card.addEventListener(
+                    "click",
+                    function () {
+
+                        const changed =
+                            markNotificationAsRead(
+                                card
+                            );
+
+
+                        if (!changed) {
+
+                            return;
+                        }
+
+
+                        showNotificationMessage(
+                            "Notification marked as read."
+                        );
+
+
+                        updateNotificationButton();
+                    }
+                );
+            }
+        );
+
+
+        markAllReadButton.addEventListener(
+            "click",
+            function () {
+
+                const unreadNotifications =
+                    document.querySelectorAll(
+                        ".notification-card.unread"
+                    );
+
+
+                if (
+                    unreadNotifications.length === 0
+                ) {
+
+                    return;
+                }
+
+
+                unreadNotifications.forEach(
+                    function (card) {
+
+                        markNotificationAsRead(
+                            card
+                        );
+                    }
+                );
+
+
+                showNotificationMessage(
+                    "All notifications were marked as read."
+                );
+
+
+                updateNotificationButton();
+            }
+        );
+
+
+        updateNotificationButton();
+    }
+
+
+
+     // =========================================
+    // SETTINGS - ACCOUNT / PROFILE
+    // =========================================
+
+    const profileSettingsForm =
+        document.getElementById(
+            "profile-settings-form"
+        );
+
+    const settingsFullName =
+        document.getElementById(
+            "settings-full-name"
+        );
+
+    const settingsEmail =
+        document.getElementById(
+            "settings-email"
+        );
+
+    const profileSettingsMessage =
+        document.getElementById(
+            "profile-settings-message"
+        );
+
+
+    if (
+        profileSettingsForm &&
+        settingsFullName &&
+        settingsEmail &&
+        profileSettingsMessage
+    ) {
+
+        profileSettingsForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const fullName =
+                    settingsFullName.value.trim();
+
+                const email =
+                    settingsEmail.value.trim();
+
+
+                if (
+                    fullName === "" ||
+                    email === ""
+                ) {
+
+                    showProfileSettingsMessage(
+                        "Please complete your profile information.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (fullName.length < 2) {
+
+                    showProfileSettingsMessage(
+                        "Please enter a valid full name.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                const namePattern =
+                    /^[A-Za-z\s'.-]+$/;
+
+
+                if (!namePattern.test(fullName)) {
+
+                    showProfileSettingsMessage(
+                        "Please enter a valid full name.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (!settingsEmail.checkValidity()) {
+
+                    showProfileSettingsMessage(
+                        "Please enter a valid email address.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                showProfileSettingsMessage(
+                    "Profile changes are valid and ready to save.",
+                    true
+                );
+            }
+        );
+
+
+        function showProfileSettingsMessage(
+            message,
+            success
+        ) {
+
+            profileSettingsMessage.hidden = false;
+
+            profileSettingsMessage.textContent =
+                message;
+
+
+            if (success) {
+
+                profileSettingsMessage.style.color =
+                    "#668575";
+
+            } else {
+
+                profileSettingsMessage.style.color =
+                    "#9B4D55";
+            }
+        }
+    }
+
+
+
+    // =========================================
+    // SETTINGS - SYSTEM PREFERENCES
+    // =========================================
+
+    const systemPreferencesForm =
+        document.getElementById(
+            "system-preferences-form"
+        );
+
+    const currencySelect =
+        document.getElementById("currency");
+
+    const lowStockThreshold =
+        document.getElementById(
+            "low-stock-threshold"
+        );
+
+    const languageSelect =
+        document.getElementById("language");
+
+    const systemPreferencesMessage =
+        document.getElementById(
+            "system-preferences-message"
+        );
+
+
+    if (
+        systemPreferencesForm &&
+        currencySelect &&
+        lowStockThreshold &&
+        languageSelect &&
+        systemPreferencesMessage
+    ) {
+
+        systemPreferencesForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                if (
+                    lowStockThreshold.value === ""
+                ) {
+
+                    showSystemPreferencesMessage(
+                        "Please enter a low stock threshold.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                const threshold =
+                    Number(
+                        lowStockThreshold.value
+                    );
+
+
+                if (
+                    !Number.isInteger(threshold) ||
+                    threshold < 0
+                ) {
+
+                    showSystemPreferencesMessage(
+                        "Low stock threshold must be a whole number that is zero or greater.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                const selectedCurrency =
+                    currencySelect.options[
+                        currencySelect.selectedIndex
+                    ].text;
+
+                const selectedLanguage =
+                    languageSelect.options[
+                        languageSelect.selectedIndex
+                    ].text;
+
+
+                showSystemPreferencesMessage(
+                    "Preferences saved: " +
+                    selectedCurrency +
+                    ", " +
+                    selectedLanguage +
+                    ", low stock threshold " +
+                    threshold +
+                    ".",
+                    true
+                );
+            }
+        );
+
+
+        function showSystemPreferencesMessage(
+            message,
+            success
+        ) {
+
+            systemPreferencesMessage.hidden = false;
+
+            systemPreferencesMessage.textContent =
+                message;
+
+
+            if (success) {
+
+                systemPreferencesMessage.style.color =
+                    "#668575";
+
+            } else {
+
+                systemPreferencesMessage.style.color =
+                    "#9B4D55";
+            }
+        }
+    }
+
+
+
+    // =========================================
+    // SETTINGS - NOTIFICATION PREFERENCES
+    // =========================================
+
+    const notificationPreferencesForm =
+        document.getElementById(
+            "notification-preferences-form"
+        );
+
+    const lowStockAlerts =
+        document.getElementById(
+            "low-stock-alerts"
+        );
+
+    const orderNotifications =
+        document.getElementById(
+            "order-notifications"
+        );
+
+    const expirationReminders =
+        document.getElementById(
+            "expiration-reminders"
+        );
+
+    const systemUpdates =
+        document.getElementById(
+            "system-updates"
+        );
+
+    const notificationPreferencesMessage =
+        document.getElementById(
+            "notification-preferences-message"
+        );
+
+
+    if (
+        notificationPreferencesForm &&
+        lowStockAlerts &&
+        orderNotifications &&
+        expirationReminders &&
+        systemUpdates &&
+        notificationPreferencesMessage
+    ) {
+
+        notificationPreferencesForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                let enabledNotifications = 0;
+
+
+                if (lowStockAlerts.checked) {
+                    enabledNotifications++;
+                }
+
+
+                if (orderNotifications.checked) {
+                    enabledNotifications++;
+                }
+
+
+                if (expirationReminders.checked) {
+                    enabledNotifications++;
+                }
+
+
+                if (systemUpdates.checked) {
+                    enabledNotifications++;
+                }
+
+
+                if (enabledNotifications === 0) {
+
+                    showNotificationPreferencesMessage(
+                        "Notification preferences saved. All notification types are disabled.",
+                        true
+                    );
+
+                } else {
+
+                    showNotificationPreferencesMessage(
+                        "Notification preferences saved successfully.",
+                        true
+                    );
+                }
+            }
+        );
+
+
+        function showNotificationPreferencesMessage(
+            message,
+            success
+        ) {
+
+            notificationPreferencesMessage.hidden =
+                false;
+
+            notificationPreferencesMessage.textContent =
+                message;
+
+
+            if (success) {
+
+                notificationPreferencesMessage.style.color =
+                    "#668575";
+
+            } else {
+
+                notificationPreferencesMessage.style.color =
+                    "#9B4D55";
+            }
+        }
+    }
+
+
+
+    // =========================================
+    // SETTINGS - SECURITY
+    // =========================================
+
+    const passwordSettingsForm =
+        document.getElementById(
+            "password-settings-form"
+        );
+
+    const currentPassword =
+        document.getElementById(
+            "current-password"
+        );
+
+    const newPassword =
+        document.getElementById(
+            "new-password"
+        );
+
+    const confirmPassword =
+        document.getElementById(
+            "confirm-password"
+        );
+
+    const passwordSettingsMessage =
+        document.getElementById(
+            "password-settings-message"
+        );
+
+
+    if (
+        passwordSettingsForm &&
+        currentPassword &&
+        newPassword &&
+        confirmPassword &&
+        passwordSettingsMessage
+    ) {
+
+        passwordSettingsForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const currentPasswordValue =
+                    currentPassword.value;
+
+                const newPasswordValue =
+                    newPassword.value;
+
+                const confirmPasswordValue =
+                    confirmPassword.value;
+
+
+                if (
+                    currentPasswordValue === "" ||
+                    newPasswordValue === "" ||
+                    confirmPasswordValue === ""
+                ) {
+
+                    showPasswordSettingsMessage(
+                        "Please complete all password fields.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (newPasswordValue.length < 6) {
+
+                    showPasswordSettingsMessage(
+                        "New password must contain at least 6 characters.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    newPasswordValue !==
+                    confirmPasswordValue
+                ) {
+
+                    showPasswordSettingsMessage(
+                        "New password and confirmation do not match.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    currentPasswordValue ===
+                    newPasswordValue
+                ) {
+
+                    showPasswordSettingsMessage(
+                        "New password must be different from the current password.",
+                        false
+                    );
+
+                    return;
+                }
+
+
+                /*
+                    DATABASE READY AREA
+
+                    Kapag may backend/database na,
+                    dito ive-verify ng server ang
+                    current password.
+
+                    Kapag valid, backend din ang
+                    magsa-save ng bagong password.
+
+                    Passwords should not be stored
+                    directly inside this JavaScript file.
+                */
+
+
+                showPasswordSettingsMessage(
+                    "Password information is valid. Database verification will be connected later.",
+                    true
+                );
+
+
+                passwordSettingsForm.reset();
+            }
+        );
+
+
+        function showPasswordSettingsMessage(
+            message,
+            success
+        ) {
+
+            passwordSettingsMessage.hidden = false;
+
+            passwordSettingsMessage.textContent =
+                message;
+
+
+            if (success) {
+
+                passwordSettingsMessage.style.color =
+                    "#668575";
+
+            } else {
+
+                passwordSettingsMessage.style.color =
+                    "#9B4D55";
+            }
+        }
+    }
+
+
 });

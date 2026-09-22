@@ -40,57 +40,122 @@
 
             <h3>Sales Breakdown</h3>
 
+            <div class="report-controls">
+
+                <input
+                    type="search"
+                    id="breakdown-search"
+                    placeholder="Search product"
+                >
+
+                <select id="breakdown-sort">
+
+                    <option value="default">
+                        Default
+                    </option>
+
+                    <option value="sold-high">
+                        Most Sold
+                    </option>
+
+                    <option value="sold-low">
+                        Least Sold
+                    </option>
+
+                    <option value="revenue-high">
+                        Highest Revenue
+                    </option>
+
+                    <option value="revenue-low">
+                        Lowest Revenue
+                    </option>
+
+                </select>
+
+            </div>
+
             <table>
 
                 <thead>
+
                     <tr>
                         <th>Product</th>
                         <th>Sold</th>
                         <th>Revenue</th>
                     </tr>
+
                 </thead>
 
-                <tbody>
+                <tbody id="breakdown-table-body">
 
-                    <tr>
-                        <td>Item 1</td>
+                    <tr
+                        class="breakdown-row"
+                        data-product="Rice"
+                        data-sold="120"
+                        data-revenue="7200"
+                    >
+                        <td>Rice</td>
                         <td>120</td>
-                        <td>0,000</td>
+                        <td>₱7,200</td>
                     </tr>
 
-                    <tr>
-                        <td>Item 2</td>
-                        <td>120</td>
-                        <td>0,000</td>
+                    <tr
+                        class="breakdown-row"
+                        data-product="Cooking Oil"
+                        data-sold="95"
+                        data-revenue="9025"
+                    >
+                        <td>Cooking Oil</td>
+                        <td>95</td>
+                        <td>₱9,025</td>
                     </tr>
 
-                    <tr>
-                        <td>Item 3</td>
+                    <tr
+                        class="breakdown-row"
+                        data-product="Sugar"
+                        data-sold="85"
+                        data-revenue="6375"
+                    >
+                        <td>Sugar</td>
                         <td>85</td>
-                        <td>0,000</td>
+                        <td>₱6,375</td>
                     </tr>
 
-                    <tr>
-                        <td>Item 4</td>
-                        <td>100</td>
-                        <td>0,000</td>
+                    <tr
+                        class="breakdown-row"
+                        data-product="Margarine"
+                        data-sold="40"
+                        data-revenue="2200"
+                    >
+                        <td>Margarine</td>
+                        <td>40</td>
+                        <td>₱2,200</td>
                     </tr>
 
                 </tbody>
 
             </table>
 
+            <p id="breakdown-no-results" hidden>
+                No products found.
+            </p>
+
         </section>
 
         <div class="page-actions">
 
-            <a href="Reports.html" class="back-button">
+            <a
+                href="Reports.html"
+                class="back-button"
+            >
                 Back
             </a>
 
         </div>
 
     </main>
+
+    <script src="script.js"></script>
 
 </body>
 
