@@ -48,7 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const existingProduct =
                     order.find(function (item) {
-                        return item.name === productName;
+
+                        return item.name ===
+                            productName;
                     });
 
 
@@ -65,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                 }
 
+
                 displayOrder();
             });
         });
@@ -74,16 +77,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
             orderItemsContainer.innerHTML = "";
 
+
             if (order.length === 0) {
 
-                emptyMessage.style.display = "block";
-                orderTotal.textContent = "₱0.00";
+                if (emptyMessage) {
+
+                    emptyMessage.style.display =
+                        "block";
+                }
+
+                orderTotal.textContent =
+                    "₱0.00";
+
                 selectedProductName = null;
 
                 return;
             }
 
-            emptyMessage.style.display = "none";
+
+            if (emptyMessage) {
+
+                emptyMessage.style.display =
+                    "none";
+            }
+
 
             let total = 0;
 
@@ -91,25 +108,36 @@ document.addEventListener("DOMContentLoaded", function () {
             order.forEach(function (item) {
 
                 const subtotal =
-                    item.price * item.quantity;
+                    item.price *
+                    item.quantity;
 
                 total += subtotal;
+
 
                 const orderItem =
                     document.createElement("div");
 
-                orderItem.className = "order-item";
+                orderItem.className =
+                    "order-item";
 
 
-                if (item.name === selectedProductName) {
-                    orderItem.classList.add("selected");
+                if (
+                    item.name ===
+                    selectedProductName
+                ) {
+
+                    orderItem.classList.add(
+                        "selected"
+                    );
                 }
 
 
                 orderItem.innerHTML = `
                     <span>
                         ${item.name}
-                        <small>x${item.quantity}</small>
+                        <small>
+                            x${item.quantity}
+                        </small>
                     </span>
 
                     <span>
@@ -157,7 +185,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
 
-                    if (selectedProductName === null) {
+                    if (
+                        selectedProductName ===
+                        null
+                    ) {
 
                         alert(
                             "Select an item from the order list first."
@@ -168,27 +199,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     const selectedProduct =
-                        order.find(function (item) {
+                        order.find(
+                            function (item) {
 
-                            return item.name ===
-                                selectedProductName;
-                        });
+                                return (
+                                    item.name ===
+                                    selectedProductName
+                                );
+                            }
+                        );
 
 
-                    if (selectedProduct.quantity > 1) {
+                    if (
+                        selectedProduct &&
+                        selectedProduct.quantity > 1
+                    ) {
 
                         selectedProduct.quantity--;
 
                     } else {
 
                         order =
-                            order.filter(function (item) {
+                            order.filter(
+                                function (item) {
 
-                                return item.name !==
-                                    selectedProductName;
-                            });
+                                    return (
+                                        item.name !==
+                                        selectedProductName
+                                    );
+                                }
+                            );
 
-                        selectedProductName = null;
+                        selectedProductName =
+                            null;
                     }
 
 
@@ -224,11 +267,13 @@ document.addEventListener("DOMContentLoaded", function () {
                                 )
                             ) {
 
-                                button.style.display = "";
+                                button.style.display =
+                                    "";
 
                             } else {
 
-                                button.style.display = "none";
+                                button.style.display =
+                                    "none";
                             }
                         }
                     );
@@ -250,7 +295,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         alert(
                             "Please add at least one item before completing the order."
                         );
+
+                        return;
                     }
+
+
+                    sessionStorage.setItem(
+                        "stockwiseOrder",
+                        JSON.stringify(order)
+                    );
                 }
             );
         }
@@ -1186,32 +1239,62 @@ document.addEventListener("DOMContentLoaded", function () {
     // =========================================
 
     const coOrderItems =
-        document.getElementById("co-order-items");
+        document.getElementById(
+            "co-order-items"
+        );
 
     const coOrderTotal =
-        document.getElementById("co-order-total");
+        document.getElementById(
+            "co-order-total"
+        );
 
     const paymentButtons =
-        document.querySelectorAll(".payment-button");
+        document.querySelectorAll(
+            ".payment-button"
+        );
 
     const printButton =
-        document.getElementById("print-receipt");
+        document.getElementById(
+            "print-receipt"
+        );
 
     const cancelOrderButton =
-        document.getElementById("cancel-order");
+        document.getElementById(
+            "cancel-order"
+        );
 
     const newOrderButton =
-        document.getElementById("new-order");
+        document.getElementById(
+            "new-order"
+        );
 
 
-    if (coOrderItems && coOrderTotal) {
+    let completeOrderTotal = 0;
+    let selectedPaymentMethod = null;
 
-        const savedOrder =
-            JSON.parse(
-                sessionStorage.getItem("stockwiseOrder")
-            ) || [];
 
-        let total = 0;
+    if (
+        coOrderItems &&
+        coOrderTotal
+    ) {
+
+        let savedOrder = [];
+
+
+        try {
+
+            savedOrder =
+                JSON.parse(
+                    sessionStorage.getItem(
+                        "stockwiseOrder"
+                    )
+                ) || [];
+
+        } catch (error) {
+
+            savedOrder = [];
+        }
+
 
         coOrderItems.innerHTML = "";
 
@@ -1221,55 +1304,126 @@ document.addEventListener("DOMContentLoaded", function () {
             coOrderItems.innerHTML =
                 "<p>No items in this order.</p>";
 
+            coOrderTotal.textContent =
+                "₱0.00";
+
         } else {
 
-            savedOrder.forEach(function (item) {
+            savedOrder.forEach(
+                function (item) {
 
-                const subtotal =
-                    item.price * item.quantity;
+                    const subtotal =
+                        Number(item.price) *
+                        Number(item.quantity);
 
-                total += subtotal;
+                    completeOrderTotal +=
+                        subtotal;
 
-                const row =
-                    document.createElement("p");
 
-                row.innerHTML = `
-                    <span>${item.name} <small>x${item.quantity}</small></span>
-                    <span>₱${subtotal.toFixed(2)}</span>
-                `;
+                    const row =
+                        document.createElement(
+                            "div"
+                        );
 
-                coOrderItems.appendChild(row);
-            });
+                    row.className =
+                        "order-item";
+
+
+                    row.innerHTML = `
+                        <span>
+                            ${item.name}
+                            <small>
+                                x${item.quantity}
+                            </small>
+                        </span>
+
+                        <span>
+                            ₱${subtotal.toFixed(2)}
+                        </span>
+                    `;
+
+
+                    coOrderItems.appendChild(
+                        row
+                    );
+                }
+            );
+
+
+            coOrderTotal.textContent =
+                "₱" +
+                completeOrderTotal.toFixed(2);
         }
-
-
-        coOrderTotal.textContent =
-            "₱" + total.toFixed(2);
     }
 
 
     if (paymentButtons.length > 0) {
 
-        paymentButtons.forEach(function (button) {
+        paymentButtons.forEach(
+            function (button) {
 
-            button.addEventListener("click", function () {
+                button.addEventListener(
+                    "click",
+                    function () {
 
-                paymentButtons.forEach(function (btn) {
-                    btn.classList.remove("selected");
-                });
+                        paymentButtons.forEach(
+                            function (otherButton) {
 
-                button.classList.add("selected");
-            });
-        });
+                                otherButton.classList.remove(
+                                    "selected"
+                                );
+                            }
+                        );
+
+
+                        button.classList.add(
+                            "selected"
+                        );
+
+
+                        selectedPaymentMethod =
+                            button.dataset.method;
+                    }
+                );
+            }
+        );
     }
 
 
     if (printButton) {
 
-        printButton.addEventListener("click", function () {
+        printButton.addEventListener(
+            "click",
+            function () {
 
-            window.print();
-        });
+                if (
+                    completeOrderTotal <= 0
+                ) {
+
+                    alert(
+                        "There is no order to print."
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    selectedPaymentMethod ===
+                    null
+                ) {
+
+                    alert(
+                        "Please select a payment method first."
+                    );
+
+                    return;
+                }
+
+
+                window.print();
+            }
+        );
     }
 
 
@@ -1284,14 +1438,20 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Are you sure you want to cancel this order?"
                     );
 
-                if (confirmed) {
 
-                    sessionStorage.removeItem(
-                        "stockwiseOrder"
-                    );
+                if (!confirmed) {
 
-                    window.location.href = "Order.html";
+                    return;
                 }
+
+
+                sessionStorage.removeItem(
+                    "stockwiseOrder"
+                );
+
+
+                window.location.href =
+                    "Order.html";
             }
         );
     }
@@ -1301,7 +1461,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
         newOrderButton.addEventListener(
             "click",
-            function () {
+            function (event) {
+
+                if (
+                    completeOrderTotal <= 0
+                ) {
+
+                    sessionStorage.removeItem(
+                        "stockwiseOrder"
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    selectedPaymentMethod ===
+                    null
+                ) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "Please select a payment method before completing the order."
+                    );
+
+                    return;
+                }
+
+
+                const previousSales =
+                    Number(
+                        localStorage.getItem(
+                            "stockwiseTotalSales"
+                        )
+                    ) || 0;
+
+
+                const updatedSales =
+                    previousSales +
+                    completeOrderTotal;
+
+
+                localStorage.setItem(
+                    "stockwiseTotalSales",
+                    updatedSales.toString()
+                );
+
 
                 sessionStorage.removeItem(
                     "stockwiseOrder"
@@ -1309,8 +1515,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         );
     }
-    
-    // =========================================
+
+        // =========================================
     // DASHBOARD PAGE
     // =========================================
 
@@ -1344,7 +1550,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
-
 
     // =========================================
     // REPORTS PAGE
