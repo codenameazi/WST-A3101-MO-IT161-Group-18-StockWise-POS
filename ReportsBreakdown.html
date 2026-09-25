@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sales Breakdown</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
+
+    <aside class="sidebar">
+
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html">INVENTORY</a>
+            <a href="Reports.html" class="active">REPORTS</a>
+            <a href="Rewards.html">REWARD</a>
+
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
+
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
+
+    </aside>
+
+    <main class="sales-breakdown">
+
+        <section>
+
+            <h3>Sales Breakdown</h3>
+
+            <div class="report-controls">
+
+                <input
+                    type="search"
+                    id="breakdown-search"
+                    placeholder="Search product"
+                >
+
+                <select id="breakdown-sort">
+
+                    <option value="default">
+                        Default
+                    </option>
+
+                    <option value="sold-high">
+                        Most Sold
+                    </option>
+
+                    <option value="sold-low">
+                        Least Sold
+                    </option>
+
+                    <option value="revenue-high">
+                        Highest Revenue
+                    </option>
+
+                    <option value="revenue-low">
+                        Lowest Revenue
+                    </option>
+
+                </select>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Product</th>
+                        <th>Sold</th>
+                        <th>Revenue</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="breakdown-table-body">
+
+                    <tr
+                        class="breakdown-row"
+                        data-product="Rice"
+                        data-sold="120"
+                        data-revenue="7200"
+                    >
+                        <td>Rice</td>
+                        <td>120</td>
+                        <td>₱7,200</td>
+                    </tr>
+
+                    <tr
+                        class="breakdown-row"
+                        data-product="Cooking Oil"
+                        data-sold="95"
+                        data-revenue="9025"
+                    >
+                        <td>Cooking Oil</td>
+                        <td>95</td>
+                        <td>₱9,025</td>
+                    </tr>
+
+                    <tr
+                        class="breakdown-row"
+                        data-product="Sugar"
+                        data-sold="85"
+                        data-revenue="6375"
+                    >
+                        <td>Sugar</td>
+                        <td>85</td>
+                        <td>₱6,375</td>
+                    </tr>
+
+                    <tr
+                        class="breakdown-row"
+                        data-product="Margarine"
+                        data-sold="40"
+                        data-revenue="2200"
+                    >
+                        <td>Margarine</td>
+                        <td>40</td>
+                        <td>₱2,200</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <p id="breakdown-no-results" hidden>
+                No products found.
+            </p>
+
+        </section>
+
+        <div class="page-actions">
+
+            <a
+                href="Reports.html"
+                class="back-button"
+            >
+                Back
+            </a>
+
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

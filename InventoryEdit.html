@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Inventory Edit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
+
+    <aside class="sidebar">
+
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html" class="active">INVENTORY</a>
+            <a href="Reports.html">REPORTS</a>
+            <a href="Rewards.html">REWARD</a>
+
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
+
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
+
+    </aside>
+
+    <main class="form-page">
+
+        <h2>Edit Product</h2>
+
+        <form id="inventory-edit-form">
+
+            <div class="form-row">
+
+                <label for="edit-category">
+                    Category:
+                </label>
+
+                <input
+                    type="text"
+                    id="edit-category"
+                    name="category"
+                    value="Rice"
+                    required
+                >
+
+            </div>
+
+            <div class="form-row">
+
+                <label for="edit-item-name">
+                    Item Name:
+                </label>
+
+                <input
+                    type="text"
+                    id="edit-item-name"
+                    name="item-name"
+                    value="Rice"
+                    required
+                >
+
+            </div>
+
+            <div class="form-row">
+
+                <label for="edit-expiration-date">
+                    Expiration Date:
+                </label>
+
+                <input
+                    type="date"
+                    id="edit-expiration-date"
+                    name="expiration-date"
+                    value="2026-09-28"
+                    required
+                >
+
+            </div>
+
+            <div class="form-row">
+
+                <label for="edit-quantity">
+                    Quantity:
+                </label>
+
+                <input
+                    type="number"
+                    id="edit-quantity"
+                    name="quantity"
+                    value="25"
+                    min="0"
+                    required
+                >
+
+            </div>
+
+            <p
+                id="inventory-edit-message"
+                class="form-message"
+                hidden
+            ></p>
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    id="remove-inventory-item"
+                >
+                    Remove Item
+                </button>
+
+                <button
+                    type="submit"
+                    id="save"
+                >
+                    Save
+                </button>
+
+                <a
+                    href="Inventory.html"
+                    class="cancel-button"
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

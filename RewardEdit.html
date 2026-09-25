@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rewards Edit Customer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
+
+    <aside class="sidebar">
+
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html">INVENTORY</a>
+            <a href="Reports.html">REPORTS</a>
+            <a href="Rewards.html" class="active">REWARD</a>
+
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
+
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
+
+    </aside>
+
+    <main class="form-page">
+
+        <h2>Customer Details</h2>
+
+        <form id="reward-edit-form">
+
+            <div class="form-row">
+
+                <label for="reward-edit-name">
+                    Customer Name
+                </label>
+
+                <input
+                    type="text"
+                    id="reward-edit-name"
+                    name="name"
+                    value="Keon"
+                    required
+                >
+
+            </div>
+
+            <div class="form-row">
+
+                <label for="reward-edit-phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="reward-edit-phone"
+                    name="phonenumber"
+                    value="09171234567"
+                    required
+                >
+
+            </div>
+
+            <div class="form-row">
+
+                <label for="reward-edit-email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="reward-edit-email"
+                    name="email"
+                    value="keon@email.com"
+                    required
+                >
+
+            </div>
+
+            <p
+                id="reward-edit-message"
+                class="form-message"
+                hidden
+            ></p>
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    id="reward-save"
+                >
+                    Save
+                </button>
+
+                <button
+                    type="button"
+                    id="reward-remove"
+                    class="remove-button"
+                >
+                    Remove
+                </button>
+
+                <a
+                    href="Rewards.html"
+                    class="cancel-button"
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

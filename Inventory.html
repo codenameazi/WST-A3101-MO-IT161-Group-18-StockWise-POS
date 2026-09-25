@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Inventory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
+
+    <aside class="sidebar">
+
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html" class="active">INVENTORY</a>
+            <a href="Reports.html">REPORTS</a>
+            <a href="Rewards.html">REWARD</a>
+
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
+
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
+
+    </aside>
+
+    <main class="inventory-page">
+
+        <section class="summary-cards">
+
+            <div class="summary-card">
+                <h4>Current Stocks</h4>
+                <p id="current-stocks">0</p>
+            </div>
+
+            <div class="summary-card">
+                <h4>Low Stocks</h4>
+                <p id="low-stocks">0</p>
+            </div>
+
+            <div class="summary-card">
+                <h4>Expiration Reminder</h4>
+                <p id="expiration-reminder">0</p>
+            </div>
+
+        </section>
+
+
+        <section class="inventory-controls">
+
+            <div class="search-form">
+
+                <input
+                    type="search"
+                    id="inventory-search"
+                    name="search"
+                    placeholder="Search item / product"
+                >
+
+                <select id="status-filter">
+                    <option value="all">All Status</option>
+                    <option value="low">Low</option>
+                    <option value="normal">Normal</option>
+                    <option value="high">High</option>
+                </select>
+
+            </div>
+
+            <a href="InventoryAdd.html" class="add-button">
+                Add Product
+            </a>
+
+        </section>
+
+
+        <section class="inventory-list">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Stock</th>
+                        <th>Status</th>
+                        <th>Expiration</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="inventory-table-body">
+
+                    <tr
+                        class="inventory-row"
+                        data-product="Rice"
+                        data-status="low"
+                        data-stock="25"
+                        data-expiring="true"
+                    >
+                        <td>Rice</td>
+                        <td>25</td>
+                        <td class="status-low">Low</td>
+                        <td>09/28/2026</td>
+                        <td>
+                            <a href="InventoryEdit.html">Edit</a>
+                        </td>
+                    </tr>
+
+                    <tr
+                        class="inventory-row"
+                        data-product="Cooking Oil"
+                        data-status="normal"
+                        data-stock="35"
+                        data-expiring="false"
+                    >
+                        <td>Cooking Oil</td>
+                        <td>35</td>
+                        <td class="status-normal">Normal</td>
+                        <td>10/28/2026</td>
+                        <td>
+                            <a href="InventoryEdit.html">Edit</a>
+                        </td>
+                    </tr>
+
+                    <tr
+                        class="inventory-row"
+                        data-product="Sugar"
+                        data-status="high"
+                        data-stock="45"
+                        data-expiring="false"
+                    >
+                        <td>Sugar</td>
+                        <td>45</td>
+                        <td class="status-high">High</td>
+                        <td>11/28/2026</td>
+                        <td>
+                            <a href="InventoryEdit.html">Edit</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <p id="inventory-no-results" hidden>
+                No products found.
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

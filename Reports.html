@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Reports</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
+
+    <aside class="sidebar">
+
+        <nav>
+            <a href="Dashboard.html">HOME</a>
+            <a href="Order.html">ORDERS</a>
+            <a href="Inventory.html">INVENTORY</a>
+            <a href="Reports.html" class="active">REPORTS</a>
+            <a href="Rewards.html">REWARD</a>
+
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
+
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
+
+    </aside>
+
+    <main class="reports-page">
+
+        <section class="report-controls">
+
+            <label for="report-period">
+                Report Period
+            </label>
+
+            <select id="report-period">
+                <option value="today">Today</option>
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+            </select>
+
+        </section>
+
+
+        <section class="report-summary">
+
+            <div>
+                <h5>Total Sales</h5>
+
+                <p id="report-sales">
+                    ₱25,000
+                </p>
+            </div>
+
+            <div>
+                <h5>Estimated Profit</h5>
+
+                <p id="report-profit">
+                    ₱5,000
+                </p>
+            </div>
+
+            <div>
+                <h5>Total Orders</h5>
+
+                <p id="report-orders">
+                    200
+                </p>
+            </div>
+
+        </section>
+
+
+        <section class="sales-overview">
+
+            <h5>Sales Overview</h5>
+
+            <div
+                class="graph"
+                id="sales-overview"
+            >
+                Today Sales: ₱25,000
+            </div>
+
+        </section>
+
+
+        <section class="product-report">
+
+            <div class="report-heading">
+
+                <h5>Fast Products</h5>
+
+                <a
+                    href="ReportsBreakdown.html"
+                    class="view-link"
+                >
+                    View
+                </a>
+
+            </div>
+
+            <div id="fast-products">
+
+                <p>Rice</p>
+                <p>Cooking Oil</p>
+
+            </div>
+
+        </section>
+
+
+        <section class="product-report">
+
+            <div class="report-heading">
+
+                <h5>Slow Products</h5>
+
+                <a
+                    href="ReportsBreakdown.html"
+                    class="view-link"
+                >
+                    View
+                </a>
+
+            </div>
+
+            <div id="slow-products">
+
+                <p>Margarine</p>
+                <p>Peanuts</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
