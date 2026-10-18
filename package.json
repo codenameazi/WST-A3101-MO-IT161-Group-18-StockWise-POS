@@ -1,0 +1,25 @@
+{
+  "name": "wst-a3101-mo-it161-group-18-stockwise-pos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codenameazi/WST-A3101-MO-IT161-Group-18-StockWise-POS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/codenameazi/WST-A3101-MO-IT161-Group-18-StockWise-POS/issues"
+  },
+  "homepage": "https://github.com/codenameazi/WST-A3101-MO-IT161-Group-18-StockWise-POS#readme",
+  "dependencies": {
+    "ejs": "^7.0.2",
+    "express": "^5.3.0"
+  }
+}
