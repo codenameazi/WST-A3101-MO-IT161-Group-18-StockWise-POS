@@ -2025,12 +2025,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 true
             );
 
-
             setTimeout(
                 function () {
 
                     window.location.href =
-                        "Dashboard.html";
+                        "/dashboard";
                 },
                 500
             );
