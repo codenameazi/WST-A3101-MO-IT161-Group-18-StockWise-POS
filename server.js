@@ -4,6 +4,7 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
+
 // =========================================
 // EJS CONFIGURATION
 // =========================================
@@ -17,8 +18,6 @@ app.set("views", path.join(__dirname, "views"));
 // =========================================
 
 app.use(express.json());
-
-// Serve existing frontend files
 app.use(express.static(__dirname));
 
 
@@ -104,6 +103,20 @@ app.get("/inventory", function (req, res) {
         pageTitle: "Inventory",
         appName: "StockWise POS",
         products: inventoryProducts
+    });
+
+});
+
+
+// =========================================
+// INVENTORY ADD SSR
+// =========================================
+
+app.get("/inventory/add", function (req, res) {
+
+    res.render("inventory-add", {
+        pageTitle: "Inventory Add",
+        appName: "StockWise POS"
     });
 
 });
