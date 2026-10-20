@@ -81,6 +81,34 @@ const reportData = {
 
 
 // =========================================
+// SAMPLE SALES BREAKDOWN DATA
+// =========================================
+
+const breakdownProducts = [
+    {
+        name: "Rice",
+        sold: 120,
+        revenue: 7200
+    },
+    {
+        name: "Cooking Oil",
+        sold: 95,
+        revenue: 9025
+    },
+    {
+        name: "Sugar",
+        sold: 85,
+        revenue: 6375
+    },
+    {
+        name: "Margarine",
+        sold: 40,
+        revenue: 2200
+    }
+];
+
+
+// =========================================
 // BACKEND STATUS
 // =========================================
 
@@ -193,6 +221,21 @@ app.get("/reports", function (req, res) {
         pageTitle: "Reports",
         appName: "StockWise POS",
         report: reportData
+    });
+
+});
+
+
+// =========================================
+// REPORTS BREAKDOWN SSR
+// =========================================
+
+app.get("/reports/breakdown", function (req, res) {
+
+    res.render("reports-breakdown", {
+        pageTitle: "Sales Breakdown",
+        appName: "StockWise POS",
+        products: breakdownProducts
     });
 
 });

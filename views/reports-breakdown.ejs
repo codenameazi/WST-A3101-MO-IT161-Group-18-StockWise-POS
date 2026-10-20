@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= pageTitle %></title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <header class="top-header">
+        <h2><%= appName %></h2>
+        <div class="user">USER</div>
+    </header>
+
+    <aside class="sidebar">
+
+        <nav>
+            <a href="/dashboard">HOME</a>
+            <a href="/Order.html">ORDERS</a>
+            <a href="/inventory">INVENTORY</a>
+            <a href="/reports" class="active">REPORTS</a>
+            <a href="/Rewards.html">REWARD</a>
+
+            <div class="sidebar-bottom">
+
+                <a href="/Notifications.html">NOTIFICATIONS</a>
+                <a href="/Settings.html">SETTINGS</a>
+
+                <footer>
+                    <a href="/login">LOGOUT</a>
+                </footer>
+
+            </div>
+
+        </nav>
+
+    </aside>
+
+    <main class="sales-breakdown">
+
+        <section>
+
+            <h3>Sales Breakdown</h3>
+
+            <div class="report-controls">
+
+                <input
+                    type="search"
+                    id="breakdown-search"
+                    placeholder="Search product"
+                >
+
+                <select id="breakdown-sort">
+
+                    <option value="default">
+                        Default
+                    </option>
+
+                    <option value="sold-high">
+                        Most Sold
+                    </option>
+
+                    <option value="sold-low">
+                        Least Sold
+                    </option>
+
+                    <option value="revenue-high">
+                        Highest Revenue
+                    </option>
+
+                    <option value="revenue-low">
+                        Lowest Revenue
+                    </option>
+
+                </select>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Product</th>
+                        <th>Sold</th>
+                        <th>Revenue</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="breakdown-table-body">
+
+                    <% products.forEach(function(product) { %>
+
+                        <tr
+                            class="breakdown-row"
+                            data-product="<%= product.name %>"
+                            data-sold="<%= product.sold %>"
+                            data-revenue="<%= product.revenue %>"
+                        >
+
+                            <td>
+                                <%= product.name %>
+                            </td>
+
+                            <td>
+                                <%= product.sold %>
+                            </td>
+
+                            <td>
+                                ₱<%= product.revenue.toLocaleString("en-PH") %>
+                            </td>
+
+                        </tr>
+
+                    <% }); %>
+
+                </tbody>
+
+            </table>
+
+            <p id="breakdown-no-results" hidden>
+                No products found.
+            </p>
+
+        </section>
+
+        <div class="page-actions">
+
+            <a
+                href="/reports"
+                class="back-button"
+            >
+                Back
+            </a>
+
+        </div>
+
+    </main>
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>
