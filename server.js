@@ -27,24 +27,33 @@ app.use(express.static(__dirname));
 
 const inventoryProducts = [
     {
+        id: 1,
         name: "Rice",
+        category: "Rice",
         stock: 25,
         status: "low",
         expiration: "09/28/2026",
+        expirationISO: "2026-09-28",
         expiring: true
     },
     {
+        id: 2,
         name: "Cooking Oil",
+        category: "Cooking Oil",
         stock: 35,
         status: "normal",
         expiration: "10/28/2026",
+        expirationISO: "2026-10-28",
         expiring: false
     },
     {
+        id: 3,
         name: "Sugar",
+        category: "Sugar",
         stock: 45,
         status: "high",
         expiration: "11/28/2026",
+        expirationISO: "2026-11-28",
         expiring: false
     }
 ];
@@ -117,6 +126,37 @@ app.get("/inventory/add", function (req, res) {
     res.render("inventory-add", {
         pageTitle: "Inventory Add",
         appName: "StockWise POS"
+    });
+
+});
+
+
+// =========================================
+// INVENTORY EDIT SSR
+// =========================================
+
+app.get("/inventory/edit/:id", function (req, res) {
+
+    const productId = Number(req.params.id);
+
+    const selectedProduct = inventoryProducts.find(
+        function (product) {
+            return product.id === productId;
+        }
+    );
+
+    if (!selectedProduct) {
+
+        return res.status(404).send(
+            "Product not found."
+        );
+
+    }
+
+    res.render("inventory-edit", {
+        pageTitle: "Inventory Edit",
+        appName: "StockWise POS",
+        product: selectedProduct
     });
 
 });
