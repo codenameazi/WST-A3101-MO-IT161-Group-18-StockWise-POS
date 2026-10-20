@@ -1,40 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title><%= pageTitle %></title>
     <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
+
     <header class="top-header">
         <h2><%= appName %></h2>
         <div class="user">USER</div>
     </header>
 
     <aside class="sidebar">
+
         <nav>
             <a href="/dashboard" class="active">HOME</a>
             <a href="/Order.html">ORDERS</a>
-            <a href="/Inventory.html">INVENTORY</a>
-            <a href="/Reports.html">REPORTS</a>
+            <a href="/inventory">INVENTORY</a>
+            <a href="/reports">REPORTS</a>
             <a href="/Rewards.html">REWARD</a>
 
             <div class="sidebar-bottom">
+
                 <a href="/Notifications.html">NOTIFICATIONS</a>
                 <a href="/Settings.html">SETTINGS</a>
 
                 <footer>
                     <a href="/login">LOGOUT</a>
                 </footer>
+
             </div>
+
         </nav>
+
     </aside>
 
     <main class="dashboard-page">
 
+        <!-- DASHBOARD SUMMARY -->
+
         <section class="summary">
+
             <div class="card">
                 <h5>Total Sales</h5>
                 <p id="dashboard-total-sales">₱0.00</p>
@@ -42,60 +53,114 @@
 
             <div class="card">
                 <h5>Current Stock</h5>
-                <p><%= currentStock %> Items</p>
+                <p>
+                    <%= currentStock %> Items
+                </p>
             </div>
 
             <div class="card">
                 <h5>Low Stock</h5>
-                <p><%= lowStock %> Item<%= lowStock === 1 ? "" : "s" %></p>
+                <p>
+                    <%= lowStock %> Item<%= lowStock === 1 ? "" : "s" %>
+                </p>
             </div>
+
         </section>
 
+
+        <!-- INVENTORY ALERTS -->
+
         <section class="alerts">
-            <div class="card clickable-card" data-href="/Inventory.html">
+
+            <div
+                class="card clickable-card"
+                data-href="/inventory"
+            >
+
                 <h5>Restock Recommendations</h5>
+
                 <p>
                     Cooking Oil - Low Stock<br>
                     View Inventory for Details
                 </p>
+
             </div>
 
-            <div class="card clickable-card" data-href="/Inventory.html">
+            <div
+                class="card clickable-card"
+                data-href="/inventory"
+            >
+
                 <h5>Expiration Reminder</h5>
+
                 <p>
                     1 Product Requires Attention<br>
                     View Inventory for Details
                 </p>
+
             </div>
+
         </section>
 
+
+        <!-- PRODUCT PERFORMANCE -->
+
         <section class="product-performance">
-            <div class="card clickable-card" data-href="/Reports.html">
+
+            <div
+                class="card clickable-card"
+                data-href="/reports"
+            >
+
                 <h5>Fast-Moving Products</h5>
+
                 <p>
                     Rice<br>
                     Cooking Oil
                 </p>
+
             </div>
 
-            <div class="card clickable-card" data-href="/Reports.html">
+            <div
+                class="card clickable-card"
+                data-href="/reports"
+            >
+
                 <h5>Slow-Moving Products</h5>
+
                 <p>
                     Margarine<br>
                     Flour
                 </p>
+
             </div>
+
         </section>
 
+
+        <!-- SALES OVERVIEW -->
+
         <section class="sales-overview">
-            <div class="card clickable-card" data-href="/Reports.html">
+
+            <div
+                class="card clickable-card"
+                data-href="/reports"
+            >
+
                 <h5>Sales Overview</h5>
-                <p>View detailed sales performance and reports</p>
+
+                <p>
+                    View detailed sales performance and reports
+                </p>
+
             </div>
+
         </section>
 
     </main>
 
     <script src="/script.js"></script>
+
 </body>
+
 </html>

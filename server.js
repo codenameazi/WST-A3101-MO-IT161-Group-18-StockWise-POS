@@ -60,6 +60,27 @@ const inventoryProducts = [
 
 
 // =========================================
+// SAMPLE REPORT DATA
+// =========================================
+
+const reportData = {
+    totalSales: 25000,
+    estimatedProfit: 5000,
+    totalOrders: 200,
+
+    fastProducts: [
+        "Rice",
+        "Cooking Oil"
+    ],
+
+    slowProducts: [
+        "Margarine",
+        "Peanuts"
+    ]
+};
+
+
+// =========================================
 // BACKEND STATUS
 // =========================================
 
@@ -157,6 +178,21 @@ app.get("/inventory/edit/:id", function (req, res) {
         pageTitle: "Inventory Edit",
         appName: "StockWise POS",
         product: selectedProduct
+    });
+
+});
+
+
+// =========================================
+// REPORTS SSR
+// =========================================
+
+app.get("/reports", function (req, res) {
+
+    res.render("reports", {
+        pageTitle: "Reports",
+        appName: "StockWise POS",
+        report: reportData
     });
 
 });
