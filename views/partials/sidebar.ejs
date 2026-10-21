@@ -1,0 +1,27 @@
+    <aside class="sidebar">
+
+        <nav>
+            <!--
+                NOTE: Dashboard/Inventory/Reports/Rewards/Notifications/Settings/LogIn
+                still point to the old .html files for now, since those pages
+                haven't been converted to EJS+Express yet. Once the whole team's
+                routes are merged into one app.js, swap these back to route paths
+                (e.g. "/dashboard") to match whatever Azriel sets up.
+            -->
+            <a href="Dashboard.html" class="<%= active === 'home' ? 'active' : '' %>">HOME</a>
+            <a href="/order" class="<%= active === 'order' ? 'active' : '' %>">ORDERS</a>
+            <a href="Inventory.html" class="<%= active === 'inventory' ? 'active' : '' %>">INVENTORY</a>
+            <a href="Reports.html" class="<%= active === 'reports' ? 'active' : '' %>">REPORTS</a>
+            <a href="Rewards.html" class="<%= active === 'rewards' ? 'active' : '' %>">REWARD</a>
+
+            <div class="sidebar-bottom">
+                <a href="Notifications.html">NOTIFICATIONS</a>
+                <a href="Settings.html">SETTINGS</a>
+
+                <footer>
+                    <a href="LogIn.html">LOGOUT</a>
+                </footer>
+            </div>
+        </nav>
+
+    </aside>
