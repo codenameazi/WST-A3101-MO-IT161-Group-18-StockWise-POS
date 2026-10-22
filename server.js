@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const ordersRouter = require("./routes/orders");
 
 const app = express();
 const PORT = 3000;
@@ -19,6 +20,9 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.json());
 app.use(express.static(__dirname));
+
+// Register Keon's Orders and Complete Order routes
+app.use(ordersRouter);
 
 
 // =========================================
