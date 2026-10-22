@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rewards View</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
+
+    <aside class="sidebar">
+
+        <nav>
+            <a href="/dashboard">HOME</a>
+            <a href="/order">ORDERS</a>
+            <a href="/inventory">INVENTORY</a>
+            <a href="/reports">REPORTS</a>
+            <a href="/rewards" class="active">REWARD</a>
+
+            <div class="sidebar-bottom">
+
+                <a href="/notifications">
+                    NOTIFICATIONS
+                </a>
+
+                <a href="/settings">
+                    SETTINGS
+                </a>
+
+                <footer>
+                    <a href="/login">
+                        LOGOUT
+                    </a>
+                </footer>
+
+            </div>
+
+        </nav>
+
+    </aside>
+
+    <main class="rewards-view-page">
+
+        <h2>Customer Details</h2>
+
+        <section class="customer-summary">
+
+            <div class="card">
+
+                <h4>Total Orders</h4>
+
+                <p id="customer-total-orders">
+                    <%= customer.purchases %>
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h4>Credit</h4>
+
+                <p id="customer-credit">
+                    ₱<%= Number(customer.credit).toFixed(2) %>
+                </p>
+
+                <button
+                    type="button"
+                    id="pay-credit-button"
+                >
+                    Pay
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <h4>Reward Points</h4>
+
+                <p id="customer-points">
+                    <%= customer.points %>
+                </p>
+
+                <button
+                    type="button"
+                    id="redeem-points-button"
+                >
+                    Redeem
+                </button>
+
+            </div>
+
+        </section>
+
+        <p
+            id="rewards-view-message"
+            class="form-message"
+            hidden
+        ></p>
+
+        <section class="customer-information card">
+
+            <h3>Customer Information</h3>
+
+            <p>
+                <strong>Customer Number:</strong>
+
+                <span id="customer-number">
+                    <%= customer.customerNumber %>
+                </span>
+            </p>
+
+            <p>
+                <strong>Customer Name:</strong>
+
+                <span id="customer-name">
+                    <%= customer.name %>
+                </span>
+            </p>
+
+            <p>
+                <strong>Phone Number:</strong>
+
+                <span id="customer-phone">
+                    <%= customer.phone %>
+                </span>
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+
+                <span id="customer-email">
+                    <%= customer.email %>
+                </span>
+            </p>
+
+            <p>
+                <strong>Customer Since:</strong>
+
+                <span id="customer-since">
+                    <%= customer.since %>
+                </span>
+            </p>
+
+        </section>
+
+        <div class="page-actions">
+
+            <a
+                href="/rewards/edit/<%= encodeURIComponent(customer.customerNumber) %>"
+                class="edit-button"
+            >
+                Edit
+            </a>
+
+            <a
+                href="/rewards"
+                class="back-button"
+            >
+                Back
+            </a>
+
+        </div>
+
+    </main>
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>

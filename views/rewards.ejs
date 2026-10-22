@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
+
+    <aside class="sidebar">
+
+        <nav>
+            <a href="/dashboard">HOME</a>
+            <a href="/order">ORDERS</a>
+            <a href="/inventory">INVENTORY</a>
+            <a href="/reports">REPORTS</a>
+            <a href="/rewards" class="active">REWARD</a>
+
+            <div class="sidebar-bottom">
+
+                <a href="/notifications">NOTIFICATIONS</a>
+                <a href="/settings">SETTINGS</a>
+
+                <footer>
+                    <a href="/login">LOGOUT</a>
+                </footer>
+
+            </div>
+        </nav>
+
+    </aside>
+
+    <main class="rewards-page">
+
+        <section class="rewards-controls">
+
+            <div class="search-form">
+
+                <label for="rewards-search">
+                    Search
+                </label>
+
+                <input
+                    type="search"
+                    id="rewards-search"
+                    name="search"
+                    placeholder="Search customer or customer number"
+                >
+
+            </div>
+
+            <a href="/rewards/add" class="add-button">
+                Add
+            </a>
+
+        </section>
+
+        <section class="rewards-overview">
+
+            <h3>Result Overview</h3>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Customer No.</th>
+                        <th>Customer</th>
+                        <th>Purchase</th>
+                        <th>Points</th>
+                        <th>Credit</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="rewards-table-body">
+
+                    <% customers.forEach(function(customer) { %>
+
+                        <tr
+                            class="reward-row"
+                            data-customer-number="<%= customer.customerNumber %>"
+                            data-customer="<%= customer.name %>"
+                        >
+
+                            <td>
+                                <%= customer.customerNumber %>
+                            </td>
+
+                            <td>
+                                <%= customer.name %>
+                            </td>
+
+                            <td>
+                                <%= customer.purchases %>
+                            </td>
+
+                            <td>
+                                <%= customer.points %>
+                            </td>
+
+                            <td>
+                                <%= customer.credit %>
+                            </td>
+
+                            <td class="table-actions">
+
+                                <a
+                                    href="/rewards/view/<%= encodeURIComponent(customer.customerNumber) %>"
+                                    class="view-button"
+                                >
+                                    View
+                                </a>
+
+                                <a
+                                    href="/rewards/edit/<%= encodeURIComponent(customer.customerNumber) %>"
+                                    class="edit-button"
+                                >
+                                    Edit
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    <% }); %>
+
+                </tbody>
+
+            </table>
+
+            <p
+                id="rewards-no-results"
+                <%= customers.length > 0 ? 'hidden' : '' %>
+            >
+                No customers found.
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rewards Add Customer</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <header class="top-header">
+        <h2>StockWise POS</h2>
+        <div class="user">USER</div>
+    </header>
+
+    <aside class="sidebar">
+
+        <nav>
+            <a href="/dashboard">HOME</a>
+            <a href="/order">ORDERS</a>
+            <a href="/inventory">INVENTORY</a>
+            <a href="/reports">REPORTS</a>
+            <a href="/rewards" class="active">REWARD</a>
+
+            <div class="sidebar-bottom">
+
+                <a href="/notifications">
+                    NOTIFICATIONS
+                </a>
+
+                <a href="/settings">
+                    SETTINGS
+                </a>
+
+                <footer>
+                    <a href="/login">
+                        LOGOUT
+                    </a>
+                </footer>
+
+            </div>
+
+        </nav>
+
+    </aside>
+
+    <main class="form-page">
+
+        <h2>Customer Details</h2>
+
+        <form id="reward-add-form">
+
+            <div class="form-row">
+
+                <label for="reward-name">
+                    Customer Name
+                </label>
+
+                <input
+                    type="text"
+                    id="reward-name"
+                    name="name"
+                    placeholder="Enter customer name"
+                    required
+                >
+
+            </div>
+
+            <div class="form-row">
+
+                <label for="reward-phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="reward-phone"
+                    name="phonenumber"
+                    placeholder="Enter phone number"
+                    required
+                >
+
+            </div>
+
+            <div class="form-row">
+
+                <label for="reward-email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="reward-email"
+                    name="email"
+                    placeholder="Enter email address"
+                    required
+                >
+
+            </div>
+
+            <p
+                id="reward-add-message"
+                class="form-message"
+                hidden
+            ></p>
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    id="add"
+                >
+                    Add
+                </button>
+
+                <a
+                    href="/rewards"
+                    class="cancel-button"
+                >
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </main>
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>
