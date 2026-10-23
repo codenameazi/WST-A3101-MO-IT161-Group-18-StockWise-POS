@@ -901,136 +901,181 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-    if (rewardAddForm) {
+// =========================================
+// REWARD ADD CUSTOMER - BACKEND INTEGRATION
+// =========================================
 
-        rewardAddForm.addEventListener(
-            "submit",
-            function (event) {
+if (rewardAddForm) {
+
+    rewardAddForm.addEventListener(
+        "submit",
+        function (event) {
+
+            const customerName =
+                rewardName.value.trim();
+
+            const phoneNumber =
+                rewardPhone.value.trim();
+
+            const emailAddress =
+                rewardEmail.value.trim();
+
+
+            // =========================================
+            // VALIDATE REQUIRED FIELDS
+            // =========================================
+
+            if (
+                customerName === "" ||
+                phoneNumber === "" ||
+                emailAddress === ""
+            ) {
 
                 event.preventDefault();
 
-
-                const customerName =
-                    rewardName.value.trim();
-
-                const phoneNumber =
-                    rewardPhone.value.trim();
-
-                const emailAddress =
-                    rewardEmail.value.trim();
-
-
-                if (
-                    customerName === "" ||
-                    phoneNumber === "" ||
-                    emailAddress === ""
-                ) {
-
-                    showRewardAddMessage(
-                        "Please complete all customer information.",
-                        false
-                    );
-
-                    return;
-                }
-
-
-                if (customerName.length < 2) {
-
-                    showRewardAddMessage(
-                        "Customer name must contain at least 2 characters.",
-                        false
-                    );
-
-                    return;
-                }
-
-
-                const phonePattern =
-                    /^[0-9+\-\s]+$/;
-
-
-                if (!phonePattern.test(phoneNumber)) {
-
-                    showRewardAddMessage(
-                        "Phone number must contain numbers only.",
-                        false
-                    );
-
-                    return;
-                }
-
-
-                const phoneDigits =
-                    phoneNumber.replace(/\D/g, "");
-
-
-                if (
-                    phoneDigits.length < 7 ||
-                    phoneDigits.length > 15
-                ) {
-
-                    showRewardAddMessage(
-                        "Please enter a valid phone number.",
-                        false
-                    );
-
-                    return;
-                }
-
-
-                const emailPattern =
-                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-                if (!emailPattern.test(emailAddress)) {
-
-                    showRewardAddMessage(
-                        "Please enter a valid email address.",
-                        false
-                    );
-
-                    return;
-                }
-
-
                 showRewardAddMessage(
-                    customerName +
-                    " was added successfully.",
-                    true
+                    "Please complete all customer information.",
+                    false
                 );
 
-
-                rewardAddForm.reset();
+                return;
             }
-        );
 
 
-        function showRewardAddMessage(
-            message,
-            success
-        ) {
+            // =========================================
+            // VALIDATE CUSTOMER NAME
+            // =========================================
 
-            rewardAddMessage.hidden = false;
-            rewardAddMessage.textContent = message;
+            if (customerName.length < 2) {
 
+                event.preventDefault();
 
-            if (success) {
+                showRewardAddMessage(
+                    "Customer name must contain at least 2 characters.",
+                    false
+                );
 
-                rewardAddMessage.style.color =
-                    "#668575";
-
-            } else {
-
-                rewardAddMessage.style.color =
-                    "#9B4D55";
+                return;
             }
+
+
+            // =========================================
+            // VALIDATE PHONE NUMBER
+            // =========================================
+
+            const phonePattern =
+                /^[0-9+\-\s]+$/;
+
+
+            if (!phonePattern.test(phoneNumber)) {
+
+                event.preventDefault();
+
+                showRewardAddMessage(
+                    "Phone number must contain numbers and valid phone symbols only.",
+                    false
+                );
+
+                return;
+            }
+
+
+            const phoneDigits =
+                phoneNumber.replace(/\D/g, "");
+
+
+            if (
+                phoneDigits.length < 7 ||
+                phoneDigits.length > 15
+            ) {
+
+                event.preventDefault();
+
+                showRewardAddMessage(
+                    "Please enter a valid phone number.",
+                    false
+                );
+
+                return;
+            }
+
+
+            // =========================================
+            // VALIDATE EMAIL ADDRESS
+            // =========================================
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+            if (!emailPattern.test(emailAddress)) {
+
+                event.preventDefault();
+
+                showRewardAddMessage(
+                    "Please enter a valid email address.",
+                    false
+                );
+
+                return;
+            }
+
+
+            // =========================================
+            // SEND DATA TO EXPRESS BACKEND
+            // =========================================
+
+            // All validation checks passed.
+            // Do not call event.preventDefault().
+            //
+            // The browser will submit the form using:
+            //
+            // POST /rewards/add
+            //
+            // Express will validate and save the
+            // customer information to customers.json.
+
+            rewardName.value = customerName;
+            rewardPhone.value = phoneNumber;
+            rewardEmail.value = emailAddress;
+
         }
-    }
-
+    );
 
 
     // =========================================
+    // DISPLAY VALIDATION MESSAGES
+    // =========================================
+
+    function showRewardAddMessage(
+        message,
+        success
+    ) {
+
+        rewardAddMessage.hidden = false;
+
+        rewardAddMessage.textContent = message;
+
+
+        if (success) {
+
+            rewardAddMessage.style.color =
+                "#668575";
+
+        } else {
+
+            rewardAddMessage.style.color =
+                "#9B4D55";
+
+        }
+
+    }
+
+}
+
+
+
+     // =========================================
     // REWARD EDIT CUSTOMER PAGE
     // =========================================
 
@@ -1047,9 +1092,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("reward-edit-email");
 
     const rewardEditMessage =
-        document.getElementById(
-            "reward-edit-message"
-        );
+        document.getElementById("reward-edit-message");
 
     const rewardRemoveButton =
         document.getElementById("reward-remove");
@@ -1060,12 +1103,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (rewardEditForm) {
 
+        // =========================================
+        // SAVE CUSTOMER - BACKEND INTEGRATION
+        // =========================================
+
         rewardEditForm.addEventListener(
             "submit",
             function (event) {
-
-                event.preventDefault();
-
 
                 const customerName =
                     rewardEditName.value.trim();
@@ -1077,11 +1121,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     rewardEditEmail.value.trim();
 
 
+                // REQUIRED FIELDS
+
                 if (
                     customerName === "" ||
                     phoneNumber === "" ||
                     emailAddress === ""
                 ) {
+
+                    event.preventDefault();
 
                     showRewardEditMessage(
                         "Please complete all customer information.",
@@ -1092,7 +1140,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+                // CUSTOMER NAME VALIDATION
+
                 if (customerName.length < 2) {
+
+                    event.preventDefault();
 
                     showRewardEditMessage(
                         "Customer name must contain at least 2 characters.",
@@ -1103,14 +1155,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+                // PHONE NUMBER VALIDATION
+
                 const phonePattern =
                     /^[0-9+\-\s]+$/;
 
-
                 if (!phonePattern.test(phoneNumber)) {
 
+                    event.preventDefault();
+
                     showRewardEditMessage(
-                        "Phone number must contain numbers only.",
+                        "Phone number must contain numbers and valid phone symbols only.",
                         false
                     );
 
@@ -1121,11 +1176,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 const phoneDigits =
                     phoneNumber.replace(/\D/g, "");
 
-
                 if (
                     phoneDigits.length < 7 ||
                     phoneDigits.length > 15
                 ) {
+
+                    event.preventDefault();
 
                     showRewardEditMessage(
                         "Please enter a valid phone number.",
@@ -1136,11 +1192,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+                // EMAIL VALIDATION
+
                 const emailPattern =
                     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
                 if (!emailPattern.test(emailAddress)) {
+
+                    event.preventDefault();
 
                     showRewardEditMessage(
                         "Please enter a valid email address.",
@@ -1151,75 +1210,122 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                showRewardEditMessage(
-                    customerName +
-                    " was updated successfully.",
-                    true
-                );
+                // =========================================
+                // VALID DATA - SUBMIT TO EXPRESS
+                // =========================================
+
+                rewardEditName.value = customerName;
+                rewardEditPhone.value = phoneNumber;
+                rewardEditEmail.value = emailAddress;
+
+                // No event.preventDefault() here.
+                // Browser submits POST to Express.
+                // Backend updates customers.json.
+
             }
         );
 
 
-        if (rewardRemoveButton) {
+// =========================================
+// REMOVE CUSTOMER BUTTON
+// =========================================
 
-            rewardRemoveButton.addEventListener(
-                "click",
-                function () {
+if (rewardRemoveButton) {
 
-                    const customerName =
-                        rewardEditName.value.trim();
+    rewardRemoveButton.addEventListener(
+        "click",
+        function () {
 
-                    const displayName =
-                        customerName === ""
-                            ? "this customer"
-                            : customerName;
+            const customerName =
+                rewardEditName.value.trim();
 
-
-                    const confirmed =
-                        confirm(
-                            "Are you sure you want to remove " +
-                            displayName +
-                            "?"
-                        );
+            const displayName =
+                customerName || "this customer";
 
 
-                    if (!confirmed) {
+            // =========================================
+            // CONFIRM CUSTOMER REMOVAL
+            // =========================================
 
-                        showRewardEditMessage(
-                            "Customer removal was cancelled.",
-                            false
-                        );
-
-                        return;
-                    }
-
-
-                    showRewardEditMessage(
-                        displayName +
-                        " was removed successfully.",
-                        true
-                    );
-
-
-                    rewardEditName.disabled = true;
-                    rewardEditPhone.disabled = true;
-                    rewardEditEmail.disabled = true;
-
-                    rewardRemoveButton.disabled = true;
-                    rewardSaveButton.disabled = true;
-                }
+            const confirmed = confirm(
+                "Are you sure you want to permanently remove " +
+                displayName +
+                "?"
             );
-        }
 
+
+            if (!confirmed) {
+
+                showRewardEditMessage(
+                    "Customer removal was cancelled.",
+                    false
+                );
+
+                return;
+            }
+
+
+            // =========================================
+            // FIND REMOVE CUSTOMER FORM
+            // =========================================
+
+            const removeForm =
+                document.getElementById(
+                    "reward-remove-form"
+                );
+
+
+            if (!removeForm) {
+
+                showRewardEditMessage(
+                    "Unable to remove customer. Please try again.",
+                    false
+                );
+
+                return;
+            }
+
+
+            // =========================================
+            // PREVENT MULTIPLE SUBMISSIONS
+            // =========================================
+
+            rewardRemoveButton.disabled = true;
+
+            if (rewardSaveButton) {
+
+                rewardSaveButton.disabled = true;
+
+            }
+
+
+            // =========================================
+            // SUBMIT TO EXPRESS BACKEND
+            // =========================================
+
+            removeForm.submit();
+
+        }
+    );
+
+}
+
+
+        // =========================================
+        // DISPLAY VALIDATION MESSAGES
+        // =========================================
 
         function showRewardEditMessage(
             message,
             success
         ) {
 
+            if (!rewardEditMessage) {
+                return;
+            }
+
             rewardEditMessage.hidden = false;
             rewardEditMessage.textContent = message;
-
 
             if (success) {
 
@@ -1230,8 +1336,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 rewardEditMessage.style.color =
                     "#9B4D55";
+
             }
         }
+
     }
 
     // =========================================

@@ -52,7 +52,11 @@
 
         <h2>Customer Details</h2>
 
-        <form id="reward-add-form">
+        <form
+            id="reward-add-form"
+            action="/rewards/add"
+            method="POST"
+        >
 
             <div class="form-row">
 
@@ -65,6 +69,7 @@
                     id="reward-name"
                     name="name"
                     placeholder="Enter customer name"
+                    value="<%= typeof formData !== 'undefined' && formData ? formData.name || '' : '' %>"
                     required
                 >
 
@@ -81,6 +86,7 @@
                     id="reward-phone"
                     name="phonenumber"
                     placeholder="Enter phone number"
+                    value="<%= typeof formData !== 'undefined' && formData ? formData.phonenumber || '' : '' %>"
                     required
                 >
 
@@ -97,10 +103,27 @@
                     id="reward-email"
                     name="email"
                     placeholder="Enter email address"
+                    value="<%= typeof formData !== 'undefined' && formData ? formData.email || '' : '' %>"
                     required
                 >
 
             </div>
+
+            <!-- BACKEND ERROR MESSAGE -->
+
+            <% if (typeof error !== "undefined" && error) { %>
+
+                <p
+                    class="form-message"
+                    role="alert"
+                    style="color: #c62828;"
+                >
+                    <%= error %>
+                </p>
+
+            <% } %>
+
+            <!-- FRONTEND MESSAGE -->
 
             <p
                 id="reward-add-message"

@@ -1,9 +1,44 @@
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 const ordersRouter = require("./routes/orders");
 
 const app = express();
 const PORT = 3000;
+
+
+// =========================================
+// CUSTOMER JSON STORAGE
+// =========================================
+
+const customersFilePath = path.join(
+    __dirname,
+    "data",
+    "customers.json"
+);
+
+// Read customers from JSON file
+function readCustomers() {
+
+    const fileContent = fs.readFileSync(
+        customersFilePath,
+        "utf8"
+    );
+
+    return JSON.parse(fileContent);
+
+}
+
+// Save customers to JSON file
+function saveCustomers(customers) {
+
+    fs.writeFileSync(
+        customersFilePath,
+        JSON.stringify(customers, null, 4),
+        "utf8"
+    );
+
+}
 
 
 // =========================================
@@ -109,54 +144,6 @@ const breakdownProducts = [
         name: "Margarine",
         sold: 40,
         revenue: 2200
-    }
-];
-
-
-// =========================================
-// SAMPLE REWARDS CUSTOMER DATA
-// =========================================
-
-const rewardsCustomers = [
-    {
-        customerNumber: "CXN00001",
-        name: "Keon",
-        phone: "09171234567",
-        email: "keon@email.com",
-        purchases: 25,
-        points: 250,
-        credit: 25,
-        since: "01/01/2026"
-    },
-    {
-        customerNumber: "CXN00002",
-        name: "Azriel",
-        phone: "09181234567",
-        email: "azriel@email.com",
-        purchases: 35,
-        points: 350,
-        credit: 35,
-        since: "01/05/2026"
-    },
-    {
-        customerNumber: "CXN00003",
-        name: "Haziel",
-        phone: "09191234567",
-        email: "haziel@email.com",
-        purchases: 45,
-        points: 450,
-        credit: 45,
-        since: "01/10/2026"
-    },
-    {
-        customerNumber: "CXN00004",
-        name: "Hannah",
-        phone: "09201234567",
-        email: "hannah@email.com",
-        purchases: 55,
-        points: 550,
-        credit: 55,
-        since: "01/15/2026"
     }
 ];
 
@@ -371,25 +358,206 @@ app.get("/reports/breakdown", function (req, res) {
 
 app.get("/rewards", function (req, res) {
 
+    const customers = readCustomers();
+
     res.render("rewards", {
         pageTitle: "Rewards",
         appName: "StockWise POS",
-        customers: rewardsCustomers
+        customers: customers
+    });
+
+});
+
+// =========================================
+// REWARDS ADD CUSTOMER SSR
+// =========================================
+
+// Display Add Customer page
+app.get("/rewards/add", function (req, res) {
+
+    res.render("reward-add", {
+        pageTitle: "Add Customer",
+        appName: "StockWise POS",
+        error: null
     });
 
 });
 
 
 // =========================================
-// REWARDS ADD CUSTOMER SSR
+// REWARDS ADD CUSTOMER BACKEND
 // =========================================
 
-app.get("/rewards/add", function (req, res) {
+app.post("/rewards/add", function (req, res) {
 
-    res.render("reward-add", {
-        pageTitle: "Add Customer",
-        appName: "StockWise POS"
+    // DEBUG: Check if the form reaches the backend
+    console.log("ADD CUSTOMER REQUEST RECEIVED");
+    console.log("FORM DATA:", req.body);
+
+    const name = String(req.body.name || "").trim();
+    const phone = String(req.body.phonenumber || "").trim();
+    const email = String(req.body.email || "").trim();
+
+    // =========================================
+    // BACKEND VALIDATION
+    // =========================================
+
+    function showError(statusCode, message) {
+        return res.status(statusCode).render("reward-add", {
+            pageTitle: "Add Customer",
+            appName: "StockWise POS",
+            error: message,
+            formData: {
+                name: name,
+                phonenumber: phone,
+                email: email
+            }
+        });
+    }
+
+    if (!name || !phone || !email) {
+        return showError(
+            400,
+            "Please complete all required fields."
+        );
+    }
+
+    if (name.length < 2) {
+        return showError(
+            400,
+            "Customer name must contain at least 2 characters."
+        );
+    }
+
+    const phonePattern = /^[0-9+\-\s]+$/;
+    const phoneDigits = phone.replace(/\D/g, "");
+
+    if (
+        !phonePattern.test(phone) ||
+        phoneDigits.length < 7 ||
+        phoneDigits.length > 15
+    ) {
+        return showError(
+            400,
+            "Please enter a valid phone number."
+        );
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+        return showError(
+            400,
+            "Please enter a valid email address."
+        );
+    }
+
+    // =========================================
+    // READ CUSTOMER DATA
+    // =========================================
+
+    let customers;
+
+    try {
+        customers = readCustomers();
+
+        if (!Array.isArray(customers)) {
+            throw new Error("Customer data must be an array.");
+        }
+
+    } catch (error) {
+
+        console.error("READ CUSTOMERS ERROR:", error);
+
+        return res.status(500).send(
+            "Unable to read customer records. Check data/customers.json."
+        );
+    }
+
+    // =========================================
+    // CHECK DUPLICATE PHONE
+    // =========================================
+
+    const duplicatePhone = customers.some(function (customer) {
+        return customer.phone === phone;
     });
+
+    if (duplicatePhone) {
+        return showError(
+            409,
+            "This phone number is already registered."
+        );
+    }
+
+    // =========================================
+    // GENERATE CUSTOMER NUMBER
+    // =========================================
+
+    const highestCustomerNumber = customers.reduce(
+        function (highest, customer) {
+
+            const number = Number(
+                String(customer.customerNumber || "")
+                    .replace("CXN", "")
+            );
+
+            return Number.isFinite(number)
+                ? Math.max(highest, number)
+                : highest;
+
+        },
+        0
+    );
+
+    const nextCustomerNumber =
+        "CXN" +
+        String(highestCustomerNumber + 1).padStart(5, "0");
+
+    // =========================================
+    // CREATE NEW CUSTOMER
+    // =========================================
+
+    const newCustomer = {
+        customerNumber: nextCustomerNumber,
+        name: name,
+        phone: phone,
+        email: email,
+        purchases: 0,
+        points: 0,
+        credit: 0,
+        since: new Date().toLocaleDateString("en-US")
+    };
+
+    // =========================================
+    // SAVE TO CUSTOMERS.JSON
+    // =========================================
+
+    customers.push(newCustomer);
+
+    try {
+
+        saveCustomers(customers);
+
+        console.log(
+            "CUSTOMER SAVED SUCCESSFULLY:",
+            newCustomer.customerNumber,
+            newCustomer.name
+        );
+
+    } catch (error) {
+
+        console.error("SAVE CUSTOMER ERROR:", error);
+
+        return res.status(500).send(
+            "Unable to save customer. Check the server terminal."
+        );
+    }
+
+    // =========================================
+    // REDIRECT TO REWARDS
+    // =========================================
+
+    return res.redirect("/rewards");
 
 });
 
@@ -402,7 +570,8 @@ app.get("/rewards/view/:customerNumber", function (req, res) {
 
     const customerNumber = req.params.customerNumber;
 
-    const selectedCustomer = rewardsCustomers.find(
+    const customers = readCustomers();
+    const selectedCustomer = customers.find(
         function (customer) {
 
             return customer.customerNumber === customerNumber;
@@ -435,7 +604,8 @@ app.get("/rewards/edit/:customerNumber", function (req, res) {
 
     const customerNumber = req.params.customerNumber;
 
-    const selectedCustomer = rewardsCustomers.find(
+    const customers = readCustomers();
+    const selectedCustomer = customers.find(
         function (customer) {
 
             return customer.customerNumber === customerNumber;
@@ -454,8 +624,335 @@ app.get("/rewards/edit/:customerNumber", function (req, res) {
     res.render("reward-edit", {
         pageTitle: "Edit Customer",
         appName: "StockWise POS",
-        customer: selectedCustomer
+        customer: selectedCustomer,
+        error: null
     });
+
+});
+
+
+// =========================================
+// REWARDS EDIT CUSTOMER BACKEND
+// =========================================
+
+app.post("/rewards/edit/:customerNumber", function (req, res) {
+
+    console.log("EDIT CUSTOMER REQUEST RECEIVED");
+    console.log("CUSTOMER NUMBER:", req.params.customerNumber);
+    console.log("FORM DATA:", req.body);
+
+    const customerNumber = req.params.customerNumber;
+
+    const name = String(req.body.name || "").trim();
+    const phone = String(req.body.phonenumber || "").trim();
+    const email = String(req.body.email || "").trim();
+
+
+    // =========================================
+    // READ CUSTOMER DATA
+    // =========================================
+
+    let customers;
+
+    try {
+
+        customers = readCustomers();
+
+        if (!Array.isArray(customers)) {
+            throw new Error("Customer data must be an array.");
+        }
+
+    } catch (error) {
+
+        console.error("READ CUSTOMERS ERROR:", error);
+
+        return res.status(500).send(
+            "Unable to read customer records."
+        );
+
+    }
+
+
+    // =========================================
+    // FIND CUSTOMER
+    // =========================================
+
+    const customerIndex = customers.findIndex(
+        function (customer) {
+
+            return customer.customerNumber === customerNumber;
+
+        }
+    );
+
+    if (customerIndex === -1) {
+
+        return res.status(404).send(
+            "Customer not found."
+        );
+
+    }
+
+
+    // =========================================
+    // DISPLAY VALIDATION ERROR
+    // =========================================
+
+    function showError(statusCode, message) {
+
+        return res.status(statusCode).render("reward-edit", {
+
+            pageTitle: "Edit Customer",
+            appName: "StockWise POS",
+
+            customer: {
+                ...customers[customerIndex],
+                name: name,
+                phone: phone,
+                email: email
+            },
+
+            error: message
+
+        });
+
+    }
+
+
+    // =========================================
+    // VALIDATE REQUIRED FIELDS
+    // =========================================
+
+    if (!name || !phone || !email) {
+
+        return showError(
+            400,
+            "Please complete all required fields."
+        );
+
+    }
+
+
+    // =========================================
+    // VALIDATE CUSTOMER NAME
+    // =========================================
+
+    if (name.length < 2) {
+
+        return showError(
+            400,
+            "Customer name must contain at least 2 characters."
+        );
+
+    }
+
+
+    // =========================================
+    // VALIDATE PHONE NUMBER
+    // =========================================
+
+    const phonePattern = /^[0-9+\-\s]+$/;
+
+    const phoneDigits = phone.replace(/\D/g, "");
+
+    if (
+        !phonePattern.test(phone) ||
+        phoneDigits.length < 7 ||
+        phoneDigits.length > 15
+    ) {
+
+        return showError(
+            400,
+            "Please enter a valid phone number."
+        );
+
+    }
+
+
+    // =========================================
+    // VALIDATE EMAIL
+    // =========================================
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+
+        return showError(
+            400,
+            "Please enter a valid email address."
+        );
+
+    }
+
+
+    // =========================================
+    // CHECK DUPLICATE PHONE NUMBER
+    // =========================================
+
+    const duplicatePhone = customers.some(
+        function (customer) {
+
+            return (
+                customer.phone === phone &&
+                customer.customerNumber !== customerNumber
+            );
+
+        }
+    );
+
+    if (duplicatePhone) {
+
+        return showError(
+            409,
+            "This phone number is already registered."
+        );
+
+    }
+
+
+    // =========================================
+    // UPDATE CUSTOMER INFORMATION
+    // =========================================
+
+    customers[customerIndex].name = name;
+    customers[customerIndex].phone = phone;
+    customers[customerIndex].email = email;
+
+
+    // =========================================
+    // SAVE TO CUSTOMERS.JSON
+    // =========================================
+
+    try {
+
+        saveCustomers(customers);
+
+        console.log(
+            "CUSTOMER UPDATED SUCCESSFULLY:",
+            customerNumber,
+            name
+        );
+
+    } catch (error) {
+
+        console.error("UPDATE CUSTOMER ERROR:", error);
+
+        return res.status(500).send(
+            "Unable to update customer information."
+        );
+
+    }
+
+
+    // =========================================
+    // REDIRECT TO CUSTOMER DETAILS
+    // =========================================
+
+    return res.redirect(
+        "/rewards/view/" + encodeURIComponent(customerNumber)
+    );
+
+});
+
+
+// =========================================
+// REWARDS REMOVE CUSTOMER BACKEND
+// =========================================
+
+app.post("/rewards/remove/:customerNumber", function (req, res) {
+
+    console.log("REMOVE CUSTOMER REQUEST RECEIVED");
+    console.log("CUSTOMER NUMBER:", req.params.customerNumber);
+
+    const customerNumber = req.params.customerNumber;
+
+
+    // =========================================
+    // READ CUSTOMER DATA
+    // =========================================
+
+    let customers;
+
+    try {
+
+        customers = readCustomers();
+
+        if (!Array.isArray(customers)) {
+            throw new Error("Customer data must be an array.");
+        }
+
+    } catch (error) {
+
+        console.error("READ CUSTOMERS ERROR:", error);
+
+        return res.status(500).send(
+            "Unable to read customer records."
+        );
+
+    }
+
+
+    // =========================================
+    // FIND CUSTOMER
+    // =========================================
+
+    const customerIndex = customers.findIndex(
+        function (customer) {
+
+            return customer.customerNumber === customerNumber;
+
+        }
+    );
+
+
+    if (customerIndex === -1) {
+
+        return res.status(404).send(
+            "Customer not found."
+        );
+
+    }
+
+
+    // =========================================
+    // REMOVE CUSTOMER
+    // =========================================
+
+    const removedCustomer = customers[customerIndex];
+
+    customers.splice(customerIndex, 1);
+
+
+    // =========================================
+    // SAVE UPDATED CUSTOMER DATA
+    // =========================================
+
+    try {
+
+        saveCustomers(customers);
+
+        console.log(
+            "CUSTOMER REMOVED SUCCESSFULLY:",
+            removedCustomer.customerNumber,
+            removedCustomer.name
+        );
+
+    } catch (error) {
+
+        console.error("REMOVE CUSTOMER ERROR:", error);
+
+        return res.status(500).send(
+            "Unable to remove customer."
+        );
+
+    }
+
+
+    // =========================================
+    // REDIRECT TO REWARDS
+    // =========================================
+
+    return res.redirect("/rewards");
 
 });
 

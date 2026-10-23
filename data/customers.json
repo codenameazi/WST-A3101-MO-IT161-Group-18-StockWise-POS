@@ -1,0 +1,42 @@
+[
+    {
+        "customerNumber": "CXN00001",
+        "name": "Keon",
+        "phone": "09171234567",
+        "email": "keon@email.com",
+        "purchases": 25,
+        "points": 250,
+        "credit": 25,
+        "since": "01/01/2026"
+    },
+    {
+        "customerNumber": "CXN00002",
+        "name": "Azriel",
+        "phone": "09181234567",
+        "email": "azriel@email.com",
+        "purchases": 35,
+        "points": 350,
+        "credit": 35,
+        "since": "01/05/2026"
+    },
+    {
+        "customerNumber": "CXN00003",
+        "name": "Haziel",
+        "phone": "09191234567",
+        "email": "haziel@email.com",
+        "purchases": 45,
+        "points": 450,
+        "credit": 45,
+        "since": "01/10/2026"
+    },
+    {
+        "customerNumber": "CXN00004",
+        "name": "Hannah",
+        "phone": "09201234567",
+        "email": "hannah@email.com",
+        "purchases": 55,
+        "points": 550,
+        "credit": 55,
+        "since": "01/15/2026"
+    }
+]

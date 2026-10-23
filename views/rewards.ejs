@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Rewards</title>
+
     <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -26,19 +28,31 @@
 
             <div class="sidebar-bottom">
 
-                <a href="/notifications">NOTIFICATIONS</a>
-                <a href="/settings">SETTINGS</a>
+                <a href="/notifications">
+                    NOTIFICATIONS
+                </a>
+
+                <a href="/settings">
+                    SETTINGS
+                </a>
 
                 <footer>
-                    <a href="/login">LOGOUT</a>
+                    <a href="/login">
+                        LOGOUT
+                    </a>
                 </footer>
 
             </div>
+
         </nav>
 
     </aside>
 
     <main class="rewards-page">
+
+        <!-- =========================================
+             REWARDS CONTROLS
+        ========================================= -->
 
         <section class="rewards-controls">
 
@@ -57,11 +71,18 @@
 
             </div>
 
-            <a href="/rewards/add" class="add-button">
+            <a
+                href="/rewards/add"
+                class="add-button"
+            >
                 Add
             </a>
 
         </section>
+
+        <!-- =========================================
+             REWARDS OVERVIEW
+        ========================================= -->
 
         <section class="rewards-overview">
 
@@ -70,6 +91,7 @@
             <table>
 
                 <thead>
+
                     <tr>
                         <th>Customer No.</th>
                         <th>Customer</th>
@@ -78,9 +100,14 @@
                         <th>Credit</th>
                         <th>Action</th>
                     </tr>
+
                 </thead>
 
                 <tbody id="rewards-table-body">
+
+                    <!-- =========================================
+                         DISPLAY CUSTOMERS FROM JSON
+                    ========================================= -->
 
                     <% customers.forEach(function(customer) { %>
 
@@ -135,6 +162,10 @@
                 </tbody>
 
             </table>
+
+            <!-- =========================================
+                 NO RESULTS MESSAGE
+            ========================================= -->
 
             <p
                 id="rewards-no-results"

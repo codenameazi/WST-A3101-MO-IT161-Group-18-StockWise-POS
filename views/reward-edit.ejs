@@ -52,7 +52,17 @@
 
         <h2>Customer Details</h2>
 
-        <form id="reward-edit-form">
+        <!-- =========================================
+             EDIT CUSTOMER FORM
+        ========================================= -->
+
+        <form
+            id="reward-edit-form"
+            action="/rewards/edit/<%= encodeURIComponent(customer.customerNumber) %>"
+            method="POST"
+        >
+
+            <!-- CUSTOMER NUMBER -->
 
             <input
                 type="hidden"
@@ -60,6 +70,8 @@
                 name="customerNumber"
                 value="<%= customer.customerNumber %>"
             >
+
+            <!-- CUSTOMER NAME -->
 
             <div class="form-row">
 
@@ -72,10 +84,14 @@
                     id="reward-edit-name"
                     name="name"
                     value="<%= customer.name %>"
+                    placeholder="Enter customer name"
+                    minlength="2"
                     required
                 >
 
             </div>
+
+            <!-- PHONE NUMBER -->
 
             <div class="form-row">
 
@@ -88,10 +104,13 @@
                     id="reward-edit-phone"
                     name="phonenumber"
                     value="<%= customer.phone %>"
+                    placeholder="Enter phone number"
                     required
                 >
 
             </div>
+
+            <!-- EMAIL ADDRESS -->
 
             <div class="form-row">
 
@@ -104,16 +123,41 @@
                     id="reward-edit-email"
                     name="email"
                     value="<%= customer.email %>"
+                    placeholder="Enter email address"
                     required
                 >
 
             </div>
+
+            <!-- =========================================
+                 BACKEND ERROR MESSAGE
+            ========================================= -->
+
+            <% if (typeof error !== "undefined" && error) { %>
+
+                <p
+                    class="form-message"
+                    role="alert"
+                    style="color: #9B4D55;"
+                >
+                    <%= error %>
+                </p>
+
+            <% } %>
+
+            <!-- =========================================
+                 FRONTEND MESSAGE
+            ========================================= -->
 
             <p
                 id="reward-edit-message"
                 class="form-message"
                 hidden
             ></p>
+
+            <!-- =========================================
+                 FORM ACTIONS
+            ========================================= -->
 
             <div class="form-actions">
 
@@ -142,6 +186,17 @@
             </div>
 
         </form>
+
+        <!-- =========================================
+             REMOVE CUSTOMER BACKEND FORM
+        ========================================= -->
+
+        <form
+            id="reward-remove-form"
+            action="/rewards/remove/<%= encodeURIComponent(customer.customerNumber) %>"
+            method="POST"
+            hidden
+        ></form>
 
     </main>
 
