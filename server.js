@@ -55,6 +55,30 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Redirect legacy bookmarks before static HTML can bypass backend routes.
+const legacyPageRoutes = {
+    "/Dashboard.html": "/dashboard",
+    "/Order.html": "/order",
+    "/CompleteOrder.html": "/complete-order",
+    "/Inventory.html": "/inventory",
+    "/InventoryAdd.html": "/inventory/add",
+    "/Reports.html": "/reports",
+    "/ReportsBreakdown.html": "/reports/breakdown",
+    "/Rewards.html": "/rewards",
+    "/RewardAdd.html": "/rewards/add",
+    "/Notifications.html": "/notifications",
+    "/Settings.html": "/settings",
+    "/LogIn.html": "/login"
+};
+
+app.use(function (req, res, next) {
+    const target = legacyPageRoutes[req.path];
+    if (req.method === "GET" && target) {
+        return res.redirect(302, target);
+    }
+    next();
+});
+
 app.use(express.static(__dirname));
 
 // Register Keon's Orders and Complete Order routes
